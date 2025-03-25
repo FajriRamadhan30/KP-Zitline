@@ -24,9 +24,9 @@ node server.js
 
 ### 2. **Frontend**
 ```bash
-cd frontend
+cd apps
 npm install
-npm start
+npm run dev
 ```
 
 ## 🔍 Endpoint API
