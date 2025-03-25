@@ -1,4 +1,4 @@
-# Zitline IP Management System
+# Zitline IP Management & Authentication System
 
 Zitline adalah sistem manajemen IP perusahaan berbasis web yang dikembangkan menggunakan **Node.js**, **Express.js**, **MySQL**, dan **React.js**. Proyek ini terinspirasi dari **phpIPAM** dan bertujuan untuk membantu perusahaan mengelola alamat IP secara efisien.
 
