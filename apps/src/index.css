@@ -1,30 +1,194 @@
+/* Global Styles */
 body {
   font-family: Arial, sans-serif;
-  background-color: #f7f9fc;
+  background-color: #1e1e1e;
+  color: #ffffff;
   margin: 0;
   padding: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
-.container {
+
+/* Layout utama agar memenuhi layar */
+.main-container {
+  display: flex;
+  flex-grow: 1;
+  width: 100%;
+  height: 100vh;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 250px;
+  background: #252525;
   padding: 20px;
-  max-width: 800px;
-  margin: auto;
-  background: white;
-  border-radius: 12px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  box-shadow: 4px 0 10px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
 }
-h1 {
+
+.sidebar h2 {
+  color: white;
   text-align: center;
   margin-bottom: 20px;
 }
+
+.menu {
+  display: flex;
+  flex-direction: column;
+}
+
+.menu-item {
+  padding: 12px;
+  cursor: pointer;
+  transition: background 0.3s;
+  border-radius: 8px;
+  text-align: left;
+}
+
+.menu-item:hover {
+  background: #444;
+}
+
+/* Content */
+.content {
+  flex-grow: 1;
+  padding: 20px;
+  background: #1e1e1e;
+  overflow: auto;
+}
+
+/* Container */
+.container {
+  padding: 20px;
+  width: 100%;
+  background: #2a2a2a;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  overflow: hidden;
+}
+
+/* Heading */
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #ffffff;
+  font-size: 2rem;
+}
+
+/* Buttons */
 button {
   margin: 5px;
-  padding: 10px 20px;
-  background-color: #34568b;
+  padding: 12px 24px;
+  background: linear-gradient(135deg, #3a7bd5, #004e92);
   color: white;
   border: none;
   border-radius: 8px;
   cursor: pointer;
+  font-size: 1rem;
+  transition: all 0.3s ease-in-out;
 }
+
 button:hover {
-  background-color: #112d54;
+  background: linear-gradient(135deg, #004e92, #3a7bd5);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(255, 255, 255, 0.2);
+}
+
+/* Table Styles */
+.table-container {
+  width: 100%;
+  overflow-x: auto; /* Responsif untuk layar kecil */
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #333;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+th, td {
+  padding: 16px;
+  border-bottom: 1px solid #444;
+  text-align: left;
+  color: #ddd;
+}
+
+th {
+  background: #222;
+  color: #ffffff;
+  font-weight: bold;
+}
+
+td {
+  background: #2a2a2a;
+  transition: background 0.3s ease-in-out;
+}
+
+td:hover {
+  background: #444;
+}
+
+tr:nth-child(even) td {
+  background: #292929;
+}
+
+tr:hover td {
+  background: #3a3a3a;
+}
+
+/* Media Queries untuk Responsiveness */
+@media (max-width: 1024px) {
+  .sidebar {
+    width: 200px;
+  }
+  .container {
+    padding: 15px;
+  }
+  h1 {
+    font-size: 1.8rem;
+  }
+  button {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .main-container {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    text-align: center;
+    box-shadow: none;
+  }
+
+  .menu {
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .menu-item {
+    padding: 10px;
+    font-size: 0.9rem;
+  }
+
+  .container {
+    padding: 10px;
+  }
+
+  table {
+    font-size: 0.9rem;
+  }
+
+  th, td {
+    padding: 12px;
+  }
 }

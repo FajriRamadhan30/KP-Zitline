@@ -1,0 +1,30 @@
+.logs-table th, .logs-table td {
+    padding: 12px;
+    border-bottom: 1px solid #444;
+    text-align: left;
+    color: #ddd;
+  }
+  
+  .logs-table th {
+    background: #222;
+    color: #ffffff;
+    font-weight: bold;
+  }
+  
+  .logs-table td {
+    background: #2a2a2a;
+    transition: background 0.3s ease-in-out;
+  }
+  
+  .logs-table tr:nth-child(even) td {
+    background: #292929;
+  }
+  
+  /* Responsive */
+  @media (max-width: 768px) {
+    .logs-table th, .logs-table td {
+      padding: 10px;
+      font-size: 0.85rem;
+    }
+  }
+  

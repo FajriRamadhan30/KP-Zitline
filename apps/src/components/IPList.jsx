@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { api } from '../api/api';
+import '../components/CSS/IPList.css';
 
 function IPList() {
   const [ips, setIPs] = useState([]);
