@@ -13,6 +13,7 @@ function App() {
       <nav className="sidebar">
         <h2 className="sidebar-title">Zitline IP</h2>
         <ul>
+          <li className={view === 'Dashboard' ? 'active' : ''} onClick={() => setView('Dashboard')}>📊 Dashboard</li>
           <li className={view === 'list' ? 'active' : ''} onClick={() => setView('list')}>📋 View IPs</li>
           <li className={view === 'form' ? 'active' : ''} onClick={() => setView('form')}>➕ Add IP</li>
           <li className={view === 'logs' ? 'active' : ''} onClick={() => setView('logs')}>📝 View Logs</li>
@@ -22,6 +23,7 @@ function App() {
       {/* Content */}
       <div className="content">
         <h1>Zitline IP Management</h1>
+        {view === 'Dashboard' && <Dashboard />}
         {view === 'list' && <IPList />}
         {view === 'form' && <IPForm />}
         {view === 'logs' && <IPLogs />}
