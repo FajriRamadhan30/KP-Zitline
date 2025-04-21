@@ -23,6 +23,33 @@ exports.createIP = (req, res) => {
   });
 };
 
+// Update IP (Fitur Baru!)
+exports.updateIP = (req, res) => {
+  const { ipAddress, subnet, assignedTo, description, status } = req.body;
+  const { id } = req.params;
+
+  if (!id) {
+    return res.status(400).json({ message: 'ID tidak ditemukan di URL' });
+  }
+
+  const sql = `
+    UPDATE ip_addresses 
+    SET 
+      ipAddress = ?, 
+      subnet = ?, 
+      assignedTo = ?, 
+      description = ?, 
+      status = ? 
+    WHERE id = ?
+  `;
+
+  db.query(sql, [ipAddress, subnet, assignedTo, description, status, id], (err, result) => {
+    if (err) res.status(500).json({ message: err.message });
+    else if (result.affectedRows === 0) res.status(404).json({ message: 'Data tidak ditemukan' });
+    else res.json({ message: 'IP Address berhasil diupdate' });
+  });
+};
+
 // Hapus IP
 exports.deleteIP = (req, res) => {
   const sql = 'DELETE FROM ip_addresses WHERE id = ?';
