@@ -9,6 +9,8 @@ function IPForm() {
     description: '',
   });
 
+  const [popup, setPopup] = useState({ show: false, message: '', type: 'success' });
+
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -16,8 +18,19 @@ function IPForm() {
   const handleSubmit = (e) => {
     e.preventDefault();
     api.post('/ips', formData)
-      .then(() => alert('✅ IP Address added!'))
-      .catch(err => alert(`❌ ${err.response?.data?.message || 'Error submitting data'}`));
+      .then(() => {
+        showPopup('✅ IP Address added!', 'success');
+        setFormData({ ipAddress: '', subnet: '', assignedTo: '', description: '' });
+      })
+      .catch(err => {
+        const message = err.response?.data?.message || 'Error submitting data';
+        showPopup(`❌ ${message}`, 'error');
+      });
+  };
+
+  const showPopup = (message, type = 'success') => {
+    setPopup({ show: true, message, type });
+    setTimeout(() => setPopup({ show: false, message: '', type: 'success' }), 3000);
   };
 
   const pageStyle = {
@@ -28,6 +41,7 @@ function IPForm() {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
+    position: 'relative',
   };
 
   const formContainerStyle = {
@@ -47,8 +61,8 @@ function IPForm() {
     borderRadius: '5px',
     border: '1px solid #555',
     fontSize: '16px',
-    backgroundColor: '#333', // abu-abu gelap
-    color: '#fff',           // teks putih
+    backgroundColor: '#333',
+    color: '#fff',
   };
 
   const buttonStyle = {
@@ -62,6 +76,24 @@ function IPForm() {
     cursor: 'pointer',
   };
 
+  const popupStyle = {
+    position: 'fixed',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    backgroundColor: '#1a1a1a',
+    color: 'red',
+    padding: '30px 24px',
+    border: '2px solid white',
+    borderRadius: '10px',
+    boxShadow: '0 4px 12px rgba(0,0,0,0.5)',
+    zIndex: 9999,
+    fontSize: '16px',
+    fontWeight: 'bold',
+    textAlign: 'center',
+    minWidth: '250px',
+  };
+
   return (
     <div style={pageStyle}>
       <div style={formContainerStyle}>
@@ -71,6 +103,7 @@ function IPForm() {
             type="text"
             name="ipAddress"
             placeholder="IP Address"
+            value={formData.ipAddress}
             onChange={handleChange}
             required
             style={inputStyle}
@@ -79,14 +112,15 @@ function IPForm() {
             type="text"
             name="subnet"
             placeholder="Subnet"
+            value={formData.subnet}
             onChange={handleChange}
             required
             style={inputStyle}
           />
           <select
             name="assignedTo"
-            onChange={handleChange}
             value={formData.assignedTo}
+            onChange={handleChange}
             style={inputStyle}
             required
           >
@@ -98,12 +132,34 @@ function IPForm() {
           <textarea
             name="description"
             placeholder="Description"
+            value={formData.description}
             onChange={handleChange}
             style={{ ...inputStyle, resize: 'vertical', minHeight: '80px' }}
           />
           <button type="submit" style={buttonStyle}>Submit</button>
         </form>
       </div>
+
+      {popup.show && (
+        <div style={popupStyle}>
+          <div style={{
+            backgroundColor: '#000',
+            borderRadius: '50%',
+            width: '50px',
+            height: '50px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            margin: '0 auto 20px',
+            border: `2px solid ${popup.type === 'success' ? 'green' : 'red'}`, // Border color dynamic
+          }}>
+            <span style={{ color: popup.type === 'success' ? 'green' : 'red', fontSize: '28px', fontWeight: 'bold' }}>
+              {popup.type === 'success' ? '✔' : '❌'} {/* Success (green) or error (red) icon */}
+            </span>
+          </div>
+          {popup.message}
+        </div>
+      )}
     </div>
   );
 }
