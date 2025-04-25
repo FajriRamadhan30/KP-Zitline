@@ -17,7 +17,9 @@ function VlanVrfManager() {
       .catch(err => showPopup(err.response?.data?.message || err.message, 'error'));
   };
 
-  useEffect(() => { fetchData(); }, []);
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   const showPopup = (message, type = 'success') => {
     setPopup({ show: true, message, type });
@@ -78,11 +80,12 @@ function VlanVrfManager() {
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    backgroundColor: popup.type === 'success' ? '#4caf50' : '#f44336',
-    color: 'white',
-    padding: '16px 24px',
-    borderRadius: '6px',
-    boxShadow: '0 4px 12px rgba(0,0,0,0.4)',
+    backgroundColor: '#1a1a1a', // dark background
+    color: 'red',
+    padding: '30px 24px',
+    border: '2px solid white', // white border
+    borderRadius: '10px',
+    boxShadow: '0 4px 12px rgba(0,0,0,0.5)',
     zIndex: 9999,
     fontSize: '16px',
     fontWeight: 'bold',
@@ -149,6 +152,19 @@ function VlanVrfManager() {
 
       {popup.show && (
         <div style={popupStyle}>
+          <div style={{
+            backgroundColor: '#000',
+            borderRadius: '50%',
+            width: '50px',
+            height: '50px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            margin: '0 auto 20px',
+            border: '2px solid red',
+          }}>
+            <span style={{ color: 'red', fontSize: '28px', fontWeight: 'bold' }}>✖</span>
+          </div>
           {popup.message}
         </div>
       )}
