@@ -6,6 +6,7 @@ function VlanVrfManager() {
   const [vrfs, setVrfs] = useState([]);
   const [vlanInput, setVlanInput] = useState({ vlan_id: '', name: '', description: '' });
   const [vrfInput, setVrfInput] = useState({ vrf_name: '', description: '' });
+  const [popup, setPopup] = useState({ show: false, message: '', type: 'success' });
 
   const fetchData = () => {
     api.get('/vlanvrf')
@@ -13,63 +14,146 @@ function VlanVrfManager() {
         setVlans(res.data.vlans);
         setVrfs(res.data.vrfs);
       })
-      .catch(err => alert(`❌ ${err.response?.data?.message || err.message}`));
+      .catch(err => showPopup(err.response?.data?.message || err.message, 'error'));
   };
 
   useEffect(() => { fetchData(); }, []);
+
+  const showPopup = (message, type = 'success') => {
+    setPopup({ show: true, message, type });
+    setTimeout(() => setPopup({ show: false, message: '', type: 'success' }), 3000);
+  };
 
   const handleVLANSubmit = (e) => {
     e.preventDefault();
     api.post('/vlanvrf/vlan', vlanInput)
       .then(() => {
-        alert('✅ VLAN berhasil ditambahkan');
+        showPopup('✅ VLAN berhasil ditambahkan', 'success');
         setVlanInput({ vlan_id: '', name: '', description: '' });
         fetchData();
       })
-      .catch(err => alert(`❌ ${err.response.data.message}`));
+      .catch(err => showPopup(`❌ ${err.response.data.message}`, 'error'));
   };
 
   const handleVRFSubmit = (e) => {
     e.preventDefault();
     api.post('/vlanvrf/vrf', vrfInput)
       .then(() => {
-        alert('✅ VRF berhasil ditambahkan');
+        showPopup('✅ VRF berhasil ditambahkan', 'success');
         setVrfInput({ vrf_name: '', description: '' });
         fetchData();
       })
-      .catch(err => alert(`❌ ${err.response.data.message}`));
+      .catch(err => showPopup(`❌ ${err.response.data.message}`, 'error'));
+  };
+
+  const formStyle = {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '20px',
+    width: '100%',
+    maxWidth: '300px',
+  };
+
+  const inputStyle = {
+    padding: '10px',
+    fontSize: '16px',
+    backgroundColor: '#000',
+    color: '#fff',
+    border: '1px solid white',
+    borderRadius: '4px',
+    boxSizing: 'border-box',
+    width: '100%',
+  };
+
+  const buttonStyle = {
+    ...inputStyle,
+    backgroundColor: '#fff',
+    color: '#000',
+    fontWeight: 'bold',
+    cursor: 'pointer',
+  };
+
+  const popupStyle = {
+    position: 'fixed',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    backgroundColor: popup.type === 'success' ? '#4caf50' : '#f44336',
+    color: 'white',
+    padding: '16px 24px',
+    borderRadius: '6px',
+    boxShadow: '0 4px 12px rgba(0,0,0,0.4)',
+    zIndex: 9999,
+    fontSize: '16px',
+    fontWeight: 'bold',
+    textAlign: 'center',
+    minWidth: '250px',
   };
 
   return (
-    <div>
-      <h2>📡 VLAN & VRF Management</h2>
+    <div style={{ padding: '20px', color: 'white', backgroundColor: '#222', minHeight: '100vh' }}>
+      <h2 style={{ textAlign: 'center' }}>📡 VLAN & VRF Management</h2>
 
-      <div style={{ display: 'flex', gap: '40px' }}>
-        <form onSubmit={handleVLANSubmit}>
+      <div style={{ display: 'flex', justifyContent: 'center', gap: '60px', marginTop: '40px', flexWrap: 'wrap' }}>
+        <form onSubmit={handleVLANSubmit} style={formStyle}>
           <h4>➕ Tambah VLAN</h4>
-          <input placeholder="VLAN ID" value={vlanInput.vlan_id} onChange={e => setVlanInput({ ...vlanInput, vlan_id: e.target.value })} required />
-          <input placeholder="Nama VLAN" value={vlanInput.name} onChange={e => setVlanInput({ ...vlanInput, name: e.target.value })} required />
-          <textarea placeholder="Deskripsi" value={vlanInput.description} onChange={e => setVlanInput({ ...vlanInput, description: e.target.value })} />
-          <button type="submit">💾 Simpan VLAN</button>
+          <input
+            placeholder="VLAN ID"
+            value={vlanInput.vlan_id}
+            onChange={e => setVlanInput({ ...vlanInput, vlan_id: e.target.value })}
+            required
+            style={inputStyle}
+          />
+          <input
+            placeholder="Nama VLAN"
+            value={vlanInput.name}
+            onChange={e => setVlanInput({ ...vlanInput, name: e.target.value })}
+            required
+            style={inputStyle}
+          />
+          <textarea
+            placeholder="Deskripsi"
+            value={vlanInput.description}
+            onChange={e => setVlanInput({ ...vlanInput, description: e.target.value })}
+            style={{ ...inputStyle, minHeight: '80px', resize: 'vertical' }}
+          />
+          <button type="submit" style={buttonStyle}>💾 Simpan VLAN</button>
         </form>
 
-        <form onSubmit={handleVRFSubmit}>
+        <form onSubmit={handleVRFSubmit} style={formStyle}>
           <h4>➕ Tambah VRF</h4>
-          <input placeholder="Nama VRF" value={vrfInput.vrf_name} onChange={e => setVrfInput({ ...vrfInput, vrf_name: e.target.value })} required />
-          <textarea placeholder="Deskripsi" value={vrfInput.description} onChange={e => setVrfInput({ ...vrfInput, description: e.target.value })} />
-          <button type="submit">💾 Simpan VRF</button>
+          <input
+            placeholder="Nama VRF"
+            value={vrfInput.vrf_name}
+            onChange={e => setVrfInput({ ...vrfInput, vrf_name: e.target.value })}
+            required
+            style={inputStyle}
+          />
+          <textarea
+            placeholder="Deskripsi"
+            value={vrfInput.description}
+            onChange={e => setVrfInput({ ...vrfInput, description: e.target.value })}
+            style={{ ...inputStyle, minHeight: '80px', resize: 'vertical' }}
+          />
+          <button type="submit" style={buttonStyle}>💾 Simpan VRF</button>
         </form>
       </div>
 
-      <div style={{ marginTop: '40px' }}>
+      <div style={{ marginTop: '50px', textAlign: 'center' }}>
         <h3>📋 Daftar VLAN</h3>
-        <ul>{vlans.map(v => <li key={v.id}>{v.vlan_id} - {v.name}</li>)}</ul>
+        <ul style={{ listStyle: 'none', padding: 0 }}>{vlans.map(v => <li key={v.id}>{v.vlan_id} - {v.name}</li>)}</ul>
 
         <h3 style={{ marginTop: '20px' }}>📋 Daftar VRF</h3>
-        <ul>{vrfs.map(v => <li key={v.id}>{v.vrf_name}</li>)}</ul>
+        <ul style={{ listStyle: 'none', padding: 0 }}>{vrfs.map(v => <li key={v.id}>{v.vrf_name}</li>)}</ul>
       </div>
+
+      {popup.show && (
+        <div style={popupStyle}>
+          {popup.message}
+        </div>
+      )}
     </div>
-  );    
+  );
 }
 
 export default VlanVrfManager;

@@ -43,7 +43,7 @@ function IPList() {
     padding: '10px',
     marginBottom: '10px',
     borderRadius: '5px',
-    border: '1px solid #ccc',
+    border: '1px solid white',
     fontSize: '16px',
     backgroundColor: '#444',
     color: '#fff',
