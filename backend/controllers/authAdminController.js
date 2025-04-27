@@ -1,55 +1,52 @@
-// backend/routes/adminAuth.js
-
-const express = require('express');
-const router = express.Router();
-const db = require('../config/db');
-const bcrypt = require('bcrypt');
+const db = require('../db');
+const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
-router.post('/login', async (req, res) => {
+exports.loginAdmin = (req, res) => {
   const { username, password } = req.body;
 
-  try {
-    // Cari user
-    const [rows] = await db.execute('SELECT * FROM admin_users WHERE username = ?', [username]);
+  if (!username || !password) {
+    return res.status(400).json({ message: 'Username dan password wajib diisi' });
+  }
 
-    if (rows.length === 0) {
-      return res.status(401).json({ error: "Username atau password salah" });
+  db.query('SELECT * FROM admin_users WHERE username = ?', [username], async (err, results) => {
+    if (err) {
+      console.error('❌ Database error:', err);
+      return res.status(500).json({ message: 'Terjadi kesalahan pada server' });
     }
 
-    const admin = rows[0];
-
-    // Check password (plain text)
-    if (password !== admin.password) {
-      return res.status(401).json({ error: "Username atau password salah" });
+    if (results.length === 0) {
+      return res.status(400).json({ message: 'Username tidak ditemukan' });
     }
 
-    // Check aktif
+    const admin = results[0];
+
+    // Cek akun aktif
     if (admin.is_active !== 1) {
-      return res.status(403).json({ error: "Akun belum aktif, hubungi admin" });
+      return res.status(403).json({ message: 'Akun tidak aktif. Hubungi administrator.' });
+    }
+
+    // Cek password
+    const isMatch = await bcrypt.compare(password, admin.password);
+
+    if (!isMatch) {
+      return res.status(400).json({ message: 'Password salah' });
     }
 
     // Generate token
     const token = jwt.sign(
       { id: admin.id, username: admin.username },
-      'your_secret_key', // Ganti secret key di .env nanti
-      { expiresIn: '1h' }
+      process.env.JWT_SECRET,
+      { expiresIn: '1d' }
     );
 
-    res.status(200).json({
-      message: "Login berhasil",
-      user: {
-        id: admin.id,
-        username: admin.username,
-        email: admin.email,
-      },
+    // Update last_login
+    db.query('UPDATE admin_users SET last_login = NOW() WHERE id = ?', [admin.id]);
+
+    res.json({
+      message: 'Login berhasil',
       token,
+      username: admin.username,
     });
-
-  } catch (error) {
-    console.error("Login Error:", error);
-    res.status(500).json({ error: "Server error" });
-  }
-});
-
-module.exports = router;
+  });
+};

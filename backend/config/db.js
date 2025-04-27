@@ -1,6 +1,6 @@
 const mysql = require('mysql2');
+require('dotenv').config();
 
-// Koneksi Database
 const db = mysql.createConnection({
   host: process.env.DB_HOST,
   user: process.env.DB_USER,
@@ -9,7 +9,10 @@ const db = mysql.createConnection({
 });
 
 db.connect((err) => {
-  if (err) throw err;
+  if (err) {
+    console.error('❌ MySQL connection error:', err);
+    process.exit(1);
+  }
   console.log('✅ MySQL Connected...');
 });
 

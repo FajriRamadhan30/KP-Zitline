@@ -1,88 +1,91 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { FaUser, FaLock } from "react-icons/fa";
-import { API_URL } from "../config/db";
-import "./CSS/AdminLogin.css";
+import { Input } from "../components/ui/input";
+import { Button } from "../components/ui/button";
+import styles from "../components/CSS/AdminLogin.module.css";
 
-export default function AdminLogin() {
+const API_URL = "http://localhost:5000"; // URL backend kamu
+
+function AdminLogin({ onLogin }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const [errorMsg, setErrorMsg] = useState("");
 
-  const navigate = useNavigate();
-
-  const handleLogin = async (e) => {
-    e.preventDefault();
-    if (!username || !password) {
-      setError("Mohon isi semua field!");
-      return;
-    }
-
+  const handleLogin = async () => {
     setLoading(true);
-    setError("");
+    setErrorMsg(""); // clear error dulu
 
     try {
-      const res = await fetch(`${API_URL}/admin/login`, {
+      const response = await fetch(`${API_URL}/api/admin/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ username, password }),
       });
 
-      const data = await res.json();
+      const data = await response.json();
 
-      if (!res.ok) {
-        setError(data.error || "Login gagal");
+      if (response.ok) {
+        // Simpan token + username
+        localStorage.setItem("token", data.token);
+        localStorage.setItem("username", data.username);
+
+        // Redirect (panggil parent function)
+        onLogin();
       } else {
-        if (data.token) {
-          localStorage.setItem("adminToken", data.token);
-          localStorage.setItem("adminUsername", data.user.username);
-        }
-        navigate("/admin/dashboard");
+        setErrorMsg(data.message || "Login gagal, cek username/password.");
       }
-    } catch (err) {
-      console.error("Login Error:", err);
-      setError("Terjadi kesalahan saat menghubungi server");
+    } catch (error) {
+      console.error("Login error:", error);
+      setErrorMsg("Terjadi kesalahan koneksi ke server");
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <div className="login-container">
-      <form className="login-card" onSubmit={handleLogin}>
-        <h2>Admin Login</h2>
+    <div className={styles.pageContainer}>
+      <div className={styles["login-container"]}>
+        <div className={styles["login-card"]}>
+          <h2>ADMIN LOGIN</h2>
 
-        <div className="input-group">
-          <FaUser className="icon" />
-          <input
-            type="text"
-            placeholder="Username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-          />
+          {errorMsg && (
+            <div className="text-red-500 text-center mb-4">{errorMsg}</div>
+          )}
+
+          <div className={styles["input-group"]}>
+            <Input
+              type="text"
+              placeholder="Username"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              required
+            />
+            <FaUser className={styles.icon} />
+          </div>
+
+          <div className={styles["input-group"]}>
+            <Input
+              type="password"
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+            <FaLock className={styles.icon} />
+          </div>
+
+          <Button
+            className={styles["login-button"]}
+            onClick={handleLogin}
+            disabled={loading}
+          >
+            {loading ? "Logging in..." : "Login"}
+          </Button>
         </div>
-
-        <div className="input-group">
-          <FaLock className="icon" />
-          <input
-            type="password"
-            placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </div>
-
-        {error && <div className="error-message">{error}</div>}
-
-        <div className="forgot-password">
-          <a href="#">Lupa Password?</a>
-        </div>
-
-        <button className="login-button" type="submit" disabled={loading}>
-          {loading ? "Loading..." : "Login"}
-        </button>
-      </form>
+      </div>
     </div>
   );
 }
+
+export default AdminLogin;

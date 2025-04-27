@@ -1,5 +1,3 @@
-// backend/server.js
-
 require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
@@ -15,13 +13,13 @@ const app = express();
 // Middleware
 app.use(cors());
 app.use(express.json());
-app.use(ipLogger); // Mencatat IP pengakses dan waktu akses
+app.use(ipLogger);
 
 // Routes
-app.use('/api/ips', ipRoutes);            // Manajemen IP Address
-app.use('/api/subnets', subnetRoutes);     // Manajemen Subnet
-app.use('/api/vlan-vrf', vlanVrfRoutes);   // Manajemen VLAN & VRF
-app.use('/api/admin', adminAuthRoutes);    // Login Admin
+app.use('/api/ips', ipRoutes);
+app.use('/api/subnets', subnetRoutes);
+app.use('/api/vlan-vrf', vlanVrfRoutes);
+app.use('/api/admin', adminAuthRoutes);
 
 // Default route
 app.get('/', (req, res) => {
