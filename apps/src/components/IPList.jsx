@@ -5,6 +5,7 @@ import '../components/CSS/IPList.css';
 function IPList() {
   const [ips, setIPs] = useState([]);
   const [editData, setEditData] = useState(null);
+  const [popup, setPopup] = useState({ show: false, message: '', type: 'success' });
 
   const fetchIPs = () => {
     api.get('/ips')
@@ -16,14 +17,22 @@ function IPList() {
     fetchIPs();
   }, []);
 
+  const showPopup = (message, type = 'success') => {
+    setPopup({ show: true, message, type });
+    setTimeout(() => setPopup({ show: false, message: '', type: 'success' }), 3000);
+  };
+
   const handleDelete = (id) => {
     if (window.confirm('Yakin ingin menghapus IP ini?')) {
       api.delete(`/ips/${id}`)
         .then(() => {
-          alert('✅ Data berhasil dihapus');
+          showPopup('✅ Data berhasil dihapus', 'success');
           fetchIPs();
         })
-        .catch(err => alert(`❌ ${err.response.data.message}`));
+        .catch(err => {
+          const message = err.response?.data?.message || '❌ Gagal menghapus data';
+          showPopup(message, 'error');
+        });
     }
   };
 
@@ -31,11 +40,14 @@ function IPList() {
     e.preventDefault();
     api.put(`/ips/${editData.id}`, editData)
       .then(() => {
-        alert('✅ Data berhasil diupdate');
+        showPopup('✅ Data berhasil diupdate', 'success');
         setEditData(null);
         fetchIPs();
       })
-      .catch(err => alert(`❌ ${err.response.data.message}`));
+      .catch(err => {
+        const message = err.response?.data?.message || '❌ Gagal update data';
+        showPopup(message, 'error');
+      });
   };
 
   const inputStyle = {
@@ -43,7 +55,7 @@ function IPList() {
     padding: '10px',
     marginBottom: '10px',
     borderRadius: '5px',
-    border: '1px solid #ccc',
+    border: '1px solid white',
     fontSize: '16px',
     backgroundColor: '#444',
     color: '#fff',
@@ -56,6 +68,24 @@ function IPList() {
     color: '#fff',
     maxWidth: '400px',
     margin: '0 auto',
+  };
+
+  const popupStyle = {
+    position: 'fixed',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    backgroundColor: '#1a1a1a',
+    color: popup.type === 'success' ? 'green' : 'red',
+    padding: '30px 24px',
+    border: '2px solid white',
+    borderRadius: '10px',
+    boxShadow: '0 4px 12px rgba(0,0,0,0.5)',
+    zIndex: 9999,
+    fontSize: '16px',
+    fontWeight: 'bold',
+    textAlign: 'center',
+    minWidth: '250px',
   };
 
   return (
@@ -164,6 +194,28 @@ function IPList() {
               ❌ Cancel
             </button>
           </form>
+        </div>
+      )}
+
+      {/* Pop-up */}
+      {popup.show && (
+        <div style={popupStyle}>
+          <div style={{
+            backgroundColor: '#000',
+            borderRadius: '50%',
+            width: '50px',
+            height: '50px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            margin: '0 auto 20px',
+            border: `2px solid ${popup.type === 'success' ? 'green' : 'red'}`,
+          }}>
+            <span style={{ color: popup.type === 'success' ? 'green' : 'red', fontSize: '28px', fontWeight: 'bold' }}>
+              {popup.type === 'success' ? '✔' : '✖'}
+            </span>
+          </div>
+          {popup.message}
         </div>
       )}
     </div>
