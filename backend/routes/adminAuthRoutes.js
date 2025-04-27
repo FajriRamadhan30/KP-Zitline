@@ -2,7 +2,11 @@ const express = require('express');
 const jwt = require('jsonwebtoken');
 const db = require('../config/db');
 
+//======================================================================//
 const router = express.Router();
+const adminController = require('../controllers/authAdminController');
+//=====================================================================//
+
 
 // Admin login
 router.post('/login', (req, res) => {
@@ -37,5 +41,11 @@ router.post('/login', (req, res) => {
     }
   );
 });
+
+//======================Admin profile=======================//
+router.get('/profile', adminController.getAdminProfile);
+
+//======================EDIT PTOFILE========================//
+router.put('/profile', adminController.updateAdminProfile);
 
 module.exports = router;
