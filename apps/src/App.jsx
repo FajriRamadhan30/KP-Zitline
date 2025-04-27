@@ -94,7 +94,7 @@ function App() {
 
       {/* Content */}
       <div className="content">
-        <h1>Zitline IP Management</h1>
+        <h1>📊 Zitline IP Management</h1>
         {view === "Dashboard" && <Dashboard onViewLogs={() => setView("logs")} />}
         {view === "list" && <IPList />}
         {view === "form" && <IPForm />}

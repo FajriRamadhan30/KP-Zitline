@@ -32,7 +32,6 @@ function Dashboard({ onViewLogs }) {
   return (
     <div className="p-8 bg-gray-100 min-h-screen">
       <div className="mb-8">
-        <h1 className="text-4xl font-bold text-gray-800 mb-2">📊 Dashboard IP Management</h1>
         <p className="text-gray-600">Selamat datang di Dashboard Zitline.</p>
       </div>
 
