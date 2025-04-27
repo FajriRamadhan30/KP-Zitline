@@ -5,7 +5,8 @@ import IPLogs from "./components/IPLogs";
 import SubnetForm from "./components/SubnetForm";
 import VlanVrfManager from "./components/VlanVrfManager";
 import Dashboard from "./components/Dashboard";
-import AdminLogin from "./components/AdminLogin"; // Import AdminLogin dari luar
+import AdminLogin from "./components/AdminLogin";
+import ProfileAdmin from "./components/ProfileAdmin"; // Import Profil Admin
 import "./App.css";
 
 function App() {
@@ -20,27 +21,36 @@ function App() {
     <div className="app-container">
       {/* Sidebar */}
       <nav className="sidebar">
-        <h2 className="sidebar-title">Zitline IP</h2>
-        <ul>
-          <li className={view === "Dashboard" ? "active" : ""} onClick={() => setView("Dashboard")}>
-            📊 Dashboard
+        <div>
+          <h2 className="sidebar-title">Zitline IP</h2>
+          <ul className="sidebar-menu">
+            <li className={view === "Dashboard" ? "active" : ""} onClick={() => setView("Dashboard")}>
+              📊 Dashboard
+            </li>
+            <li className={view === "list" ? "active" : ""} onClick={() => setView("list")}>
+              📋 View IPs
+            </li>
+            <li className={view === "form" ? "active" : ""} onClick={() => setView("form")}>
+              ➕ Add IP
+            </li>
+            <li className={view === "logs" ? "active" : ""} onClick={() => setView("logs")}>
+              📝 View Logs
+            </li>
+            <li className={view === "subnets" ? "active" : ""} onClick={() => setView("subnets")}>
+              🌐 Manage Subnets
+            </li>
+            <li className={view === "vlanvrf" ? "active" : ""} onClick={() => setView("vlanvrf")}>
+              📡 VLAN & VRF
+            </li>
+          </ul>
+        </div>
+
+        {/* Button Profil Admin di paling bawah */}
+        <div className="sidebar-bottom">
+          <li className={view === "ProfilAdmin" ? "active" : ""} onClick={() => setView("ProfilAdmin")}>
+            👤 Profil Admin
           </li>
-          <li className={view === "list" ? "active" : ""} onClick={() => setView("list")}>
-            📋 View IPs
-          </li>
-          <li className={view === "form" ? "active" : ""} onClick={() => setView("form")}>
-            ➕ Add IP
-          </li>
-          <li className={view === "logs" ? "active" : ""} onClick={() => setView("logs")}>
-            📝 View Logs
-          </li>
-          <li className={view === "subnets" ? "active" : ""} onClick={() => setView("subnets")}>
-            🌐 Manage Subnets
-          </li>
-          <li className={view === "vlanvrf" ? "active" : ""} onClick={() => setView("vlanvrf")}>
-            📡 VLAN & VRF
-          </li>
-        </ul>
+        </div>
       </nav>
 
       {/* Content */}
@@ -52,6 +62,7 @@ function App() {
         {view === "logs" && <IPLogs />}
         {view === "subnets" && <SubnetForm />}
         {view === "vlanvrf" && <VlanVrfManager />}
+        {view === "ProfilAdmin" && <ProfileAdmin />}
       </div>
     </div>
   );
