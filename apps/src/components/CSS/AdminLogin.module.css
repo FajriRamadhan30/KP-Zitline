@@ -1,10 +1,8 @@
-/* AdminLogin.css */
-
-body {
+.pageContainer {
   margin: 0;
   padding: 0;
   font-family: 'Arial', sans-serif;
-  background-color: #bfdbfe;
+  background-color: #111827; /* Warna background halaman: Gelap */
   height: 100vh;
   display: flex;
   justify-content: center;
@@ -17,17 +15,18 @@ body {
 }
 
 .login-card {
-  background-color: #1e3a8a;
+  background-color: #374151; /* Background kotak: Abu-abu */
   padding: 2rem;
   border-radius: 1rem;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
-  color: #ffffff;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+  color: #ffffff; /* Warna tulisan: Putih */
   text-align: center;
 }
 
 .login-card h2 {
   font-size: 1.8rem;
   margin-bottom: 2rem;
+  color: #ffffff; /* Warna tulisan tetap putih */
 }
 
 .input-group {
@@ -36,9 +35,9 @@ body {
 }
 
 .input-group input {
-  width: 100%;
+  width: 290px;
   padding: 0.75rem 0.75rem 0.75rem 2.5rem;
-  background-color: #374151;
+  background-color: #4b5563; /* Abu-abu lebih terang untuk input */
   border: none;
   border-radius: 0.5rem;
   color: #ffffff;
@@ -60,7 +59,7 @@ body {
 }
 
 .error-message {
-  color: #f87171;
+  color: #f87171; /* Merah untuk error */
   font-size: 0.875rem;
   margin-bottom: 1rem;
 }
