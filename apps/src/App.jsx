@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import IPList from "./components/IPList";
 import IPForm from "./components/IPForm";
 import IPLogs from "./components/IPLogs";
@@ -10,11 +10,33 @@ import ProfileAdmin from "./components/ProfileAdmin"; // Import Profil Admin
 import "./App.css";
 
 function App() {
+  // State untuk halaman aktif dan login status
   const [view, setView] = useState("Dashboard");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
+  // Menggunakan useEffect untuk memeriksa status login dari localStorage
+  useEffect(() => {
+    const loggedInStatus = localStorage.getItem("isLoggedIn");
+    if (loggedInStatus === "true") {
+      setIsLoggedIn(true);
+    }
+  }, []);
+
+  // Fungsi login untuk mengatur status login
+  const handleLogin = () => {
+    setIsLoggedIn(true);
+    localStorage.setItem("isLoggedIn", "true"); // Menyimpan status login
+  };
+
+  // Fungsi logout untuk menghapus status login
+  const handleLogout = () => {
+    setIsLoggedIn(false);
+    localStorage.removeItem("isLoggedIn"); // Hapus status login
+  };
+
+  // Jika belum login, tampilkan halaman login
   if (!isLoggedIn) {
-    return <AdminLogin onLogin={() => setIsLoggedIn(true)} />;
+    return <AdminLogin onLogin={handleLogin} />;
   }
 
   return (
@@ -56,7 +78,7 @@ function App() {
       {/* Content */}
       <div className="content">
         <h1>📊 Zitline IP Management</h1>
-        {view === "Dashboard" && <Dashboard onViewLogs={() => setView("logs")} />}
+        {view === "Dashboard" && <Dashboard onViewLogs={() => setView("logs")} onLogout={handleLogout} />}
         {view === "list" && <IPList />}
         {view === "form" && <IPForm />}
         {view === "logs" && <IPLogs />}

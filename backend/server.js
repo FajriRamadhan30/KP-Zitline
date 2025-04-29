@@ -1,12 +1,12 @@
-require('dotenv').config();
-const express = require('express');
-const cors = require('cors');
+require("dotenv").config();
+const express = require("express");
+const cors = require("cors");
 
-const ipRoutes = require('./routes/ipRoutes');
-const subnetRoutes = require('./routes/subnetRoutes');
+const ipRoutes = require("./routes/ipRoutes");
+const subnetRoutes = require("./routes/subnetRoutes");
 const vlanVrfRoutes = require('./routes/vlanVrfRoutes');
-const adminAuthRoutes = require('./routes/adminAuthRoutes');
-const ipLogger = require('./middleware/ipLogger');
+const adminAuthRoutes = require("./routes/adminAuthRoutes");
+const ipLogger = require("./middleware/ipLogger");
 
 const app = express();
 
@@ -16,14 +16,14 @@ app.use(express.json());
 app.use(ipLogger);
 
 // Routes
-app.use('/api/ips', ipRoutes);
-app.use('/api/subnets', subnetRoutes);
-app.use('/api/vlan-vrf', vlanVrfRoutes);
-app.use('/api/admin', adminAuthRoutes);
+app.use("/api/ips", ipRoutes);
+app.use("/api/subnets", subnetRoutes);
+app.use('/api/vlanvrf', vlanVrfRoutes);
+app.use("/api/admin", adminAuthRoutes);
 
 // Default route
-app.get('/', (req, res) => {
-  res.send('🌐 IP Address Management API is running...');
+app.get("/", (req, res) => {
+  res.send("🌐 IP Address Management API is running...");
 });
 
 // Start Server
