@@ -2,9 +2,9 @@ const express = require('express');
 const router = express.Router();
 const controller = require('../controllers/vlanVrfController');
 
-router.post('/vlans', controller.createVLAN);
-router.get('/vlans', controller.getAllVLANs);
-router.post('/vrfs', controller.createVRF);
-router.get('/vrfs', controller.getAllVRFs);
+// Route untuk VLAN dan VRF
+router.get('/', controller.getAllVLANs);  // Mengambil semua VLAN & VRF
+router.post('/vlan', controller.createVLAN);  // Menambah VLAN
+router.post('/vrf', controller.createVRF);  // Menambah VRF
 
 module.exports = router;

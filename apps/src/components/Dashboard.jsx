@@ -15,7 +15,7 @@ const subnetData = [
 
 const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"];
 
-function Dashboard({ onViewLogs }) {
+function Dashboard({ onViewLogs, onLogout }) {
   const [totalIPs, setTotalIPs] = useState(0);
   const [totalSubnets, setTotalSubnets] = useState(0);
   const [totalVlans, setTotalVlans] = useState(0);
@@ -49,6 +49,16 @@ function Dashboard({ onViewLogs }) {
           className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-lg"
         >
           📝 View Logs
+        </Button>
+      </div>
+
+      {/* Logout Button */}
+      <div className="mb-10">
+        <Button 
+          onClick={onLogout} 
+          className="bg-red-600 hover:bg-red-700 text-white font-semibold px-6 py-3 rounded-lg"
+        >
+          🚪 Logout
         </Button>
       </div>
 
