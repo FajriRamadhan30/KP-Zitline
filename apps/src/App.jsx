@@ -8,6 +8,7 @@ import Dashboard from "./components/Dashboard";
 import AdminLogin from "./components/AdminLogin";
 import ProfileAdmin from "./components/ProfileAdmin"; // Import Profil Admin
 import "./App.css";
+import UserManagement from "./components/UserManagement";
 
 function App() {
   // State untuk halaman aktif dan login status
@@ -49,6 +50,9 @@ function App() {
             <li className={view === "Dashboard" ? "active" : ""} onClick={() => setView("Dashboard")}>
               📊 Dashboard
             </li>
+            <li className={view === "users" ? "active" : ""} onClick={() => setView("users")}>
+              👥 Manajemen User
+            </li>
             <li className={view === "list" ? "active" : ""} onClick={() => setView("list")}>
               📋 View IPs
             </li>
@@ -79,6 +83,7 @@ function App() {
       <div className="content">
         <h1>📊 Zitline IP Management</h1>
         {view === "Dashboard" && <Dashboard onViewLogs={() => setView("logs")} onLogout={handleLogout} />}
+        {view === "users" && <UserManagement />}
         {view === "list" && <IPList />}
         {view === "form" && <IPForm />}
         {view === "logs" && <IPLogs />}
