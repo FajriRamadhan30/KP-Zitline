@@ -1,6 +1,8 @@
 const express = require('express');
 const jwt = require('jsonwebtoken');
 const db = require('../config/db');
+const profileController = require('../controllers/profileAdminController');
+
 
 //======================================================================//
 const router = express.Router();
@@ -42,10 +44,7 @@ router.post('/login', (req, res) => {
   );
 });
 
-//======================Admin profile=======================//
-router.get('/profile', adminController.getAdminProfile);
-
-//======================EDIT PTOFILE========================//
-router.put('/profile', adminController.updateAdminProfile);
+router.get('/profile', profileController.getProfile);
+router.put('/profile', profileController.updateProfile);
 
 module.exports = router;
