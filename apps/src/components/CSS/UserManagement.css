@@ -1,0 +1,58 @@
+/* src/CSS/UserManagement.css */
+
+.user-container {
+    padding: 20px;
+    background-color: #222;
+    color: white;
+    min-height: 100vh;
+  }
+  
+  .user-form {
+    margin-bottom: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  
+  .user-form input,
+  .user-form select {
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid white;
+    background-color: #111;
+    color: white;
+    flex: 1;
+    min-width: 150px;
+  }
+  
+  .user-form button {
+    padding: 10px 20px;
+    border-radius: 4px;
+    border: none;
+    background-color: #00bcd4;
+    color: white;
+    cursor: pointer;
+  }
+  
+  .user-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .user-table th,
+  .user-table td {
+    border: 1px solid white;
+    padding: 10px;
+    text-align: left;
+  }
+  
+  .action-btn {
+    margin-right: 8px;
+    padding: 4px 10px;
+    background-color: #0088fe;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
