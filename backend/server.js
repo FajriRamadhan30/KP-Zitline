@@ -8,6 +8,7 @@ const vlanVrfRoutes = require('./routes/vlanVrfRoutes');
 const adminAuthRoutes = require("./routes/adminAuthRoutes");
 const ipLogger = require("./middleware/ipLogger");
 const userRoutes = require('./routes/userRoutes');
+const dashboardRoutes = require('./routes/dashboardRoutes');
 
 const app = express();
 
@@ -22,6 +23,7 @@ app.use("/api/subnets", subnetRoutes);
 app.use('/api/vlanvrf', vlanVrfRoutes);
 app.use("/api/admin", adminAuthRoutes);
 app.use('/api/users', userRoutes);
+app.use('/api/dashboard', dashboardRoutes);
 
 // Default route
 app.get("/", (req, res) => {
