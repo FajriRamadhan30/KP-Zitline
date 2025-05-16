@@ -9,6 +9,10 @@ function UserManagement() {
   const [editingId, setEditingId] = useState(null);
   const [error, setError] = useState("");
 
+  const [searchTerm, setSearchTerm] = useState("");
+  const [locationFilter, setLocationFilter] = useState("");
+  const [osFilter, setOsFilter] = useState("");
+
   const fetchUsers = () => {
     api.get("/users")
       .then(res => setUsers(res.data))
@@ -28,16 +32,14 @@ function UserManagement() {
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
-    setError(""); // reset error saat input berubah
+    setError("");
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     const ipInUse = users.find(
       u => u.id_ip === parseInt(form.id_ip) && u.id !== editingId
     );
-
     if (ipInUse) {
       setError("❌ IP yang dipilih sudah digunakan oleh user lain.");
       return;
@@ -76,15 +78,46 @@ function UserManagement() {
     }
   };
 
-  // Ambil ID IP yang sudah dipakai user lain (kecuali yang sedang diedit)
   const usedIpIds = users
     .filter(u => !editingId || u.id !== editingId)
     .map(u => u.id_ip);
+
+  const filteredUsers = users.filter(u =>
+    u.name.toLowerCase().includes(searchTerm.toLowerCase()) &&
+    (locationFilter === "" || u.location === locationFilter) &&
+    (osFilter === "" || u.os === osFilter)
+  );
+
+  const uniqueLocations = [...new Set(users.map(u => u.location).filter(Boolean))];
+  const uniqueOS = [...new Set(users.map(u => u.os).filter(Boolean))];
 
   return (
     <div className="user-container">
       <h2 className="user-title">👥 Manajemen Pengguna</h2>
 
+      {/* Search & Filter */}
+      <div className="filter-bar">
+        <input
+          type="text"
+          placeholder="🔍 Cari berdasarkan nama..."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+        />
+        <select value={locationFilter} onChange={(e) => setLocationFilter(e.target.value)}>
+          <option value="">📍 Semua Lokasi</option>
+          {uniqueLocations.map(loc => (
+            <option key={loc} value={loc}>{loc}</option>
+          ))}
+        </select>
+        <select value={osFilter} onChange={(e) => setOsFilter(e.target.value)}>
+          <option value="">💻 Semua OS</option>
+          {uniqueOS.map(os => (
+            <option key={os} value={os}>{os}</option>
+          ))}
+        </select>
+      </div>
+
+      {/* Form Input */}
       <form onSubmit={handleSubmit} className="user-form">
         <input name="name" placeholder="Nama" value={form.name} onChange={handleChange} required />
         <input name="location" placeholder="Lokasi" value={form.location} onChange={handleChange} />
@@ -111,7 +144,7 @@ function UserManagement() {
         )}
       </form>
 
-      {error && <p style={{ color: 'red', marginBottom: '15px' }}>{error}</p>}
+      {error && <p className="user-error">{error}</p>}
 
       <table className="user-table">
         <thead>
@@ -125,7 +158,7 @@ function UserManagement() {
           </tr>
         </thead>
         <tbody>
-          {users.map(u => (
+          {filteredUsers.map(u => (
             <tr key={u.id}>
               <td>{u.id}</td>
               <td>{u.name}</td>
@@ -133,8 +166,8 @@ function UserManagement() {
               <td>{u.os}</td>
               <td>{u.ipAddress || "-"}</td>
               <td>
-                <button className="btn-edit" onClick={() => handleEdit(u)}>✏️</button>
-                <button className="btn-delete" onClick={() => handleDelete(u.id)}>🗑</button>
+                <button className="btn-edit" onClick={() => handleEdit(u)}>✏️ Edit</button>
+                <button className="btn-delete" onClick={() => handleDelete(u.id)}>🗑 Delete</button>
               </td>
             </tr>
           ))}
