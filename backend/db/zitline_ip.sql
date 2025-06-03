@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 13 Bulan Mei 2025 pada 17.18
--- Versi server: 10.4.28-MariaDB
--- Versi PHP: 8.2.4
+-- Generation Time: Jun 03, 2025 at 05:02 PM
+-- Server version: 8.4.3
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,19 +24,19 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `access_logs`
+-- Table structure for table `access_logs`
 --
 
 CREATE TABLE `access_logs` (
-  `id` int(11) NOT NULL,
-  `ipAddress` varchar(45) NOT NULL,
-  `userAgent` varchar(255) DEFAULT NULL,
-  `endpoint` varchar(255) DEFAULT NULL,
-  `timestamp` timestamp NULL DEFAULT current_timestamp()
+  `id` int NOT NULL,
+  `ipAddress` varchar(45) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `userAgent` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `endpoint` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `timestamp` timestamp NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data untuk tabel `access_logs`
+-- Dumping data for table `access_logs`
 --
 
 INSERT INTO `access_logs` (`id`, `ipAddress`, `userAgent`, `endpoint`, `timestamp`) VALUES
@@ -1091,51 +1091,379 @@ INSERT INTO `access_logs` (`id`, `ipAddress`, `userAgent`, `endpoint`, `timestam
 (1046, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36 Edg/136.0.0.0', '/api/ips', '2025-05-13 15:16:51'),
 (1047, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36 Edg/136.0.0.0', '/api/ips', '2025-05-13 15:16:56'),
 (1048, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36 Edg/136.0.0.0', '/api/users', '2025-05-13 15:16:58'),
-(1049, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36 Edg/136.0.0.0', '/api/ips', '2025-05-13 15:16:59');
+(1049, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36 Edg/136.0.0.0', '/api/ips', '2025-05-13 15:16:59'),
+(1050, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/admin/login', '2025-06-03 10:11:47'),
+(1051, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/dashboard/stats', '2025-06-03 10:11:48'),
+(1052, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/ips/logs', '2025-06-03 10:12:19'),
+(1053, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/dashboard/stats', '2025-06-03 10:12:26'),
+(1054, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/users', '2025-06-03 10:12:29'),
+(1055, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/ips', '2025-06-03 10:12:29'),
+(1056, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/ips', '2025-06-03 10:12:52'),
+(1057, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/users', '2025-06-03 10:13:02'),
+(1058, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/ips', '2025-06-03 10:13:02'),
+(1059, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/ips', '2025-06-03 10:14:59'),
+(1060, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/ips/1', '2025-06-03 10:15:15'),
+(1061, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/ips', '2025-06-03 10:15:15'),
+(1062, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/ips/55', '2025-06-03 10:15:37'),
+(1063, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/ips', '2025-06-03 10:15:37'),
+(1064, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/ips', '2025-06-03 10:15:50'),
+(1065, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/ips/logs', '2025-06-03 10:17:39'),
+(1066, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/ips/logs', '2025-06-03 10:18:13'),
+(1067, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/subnets', '2025-06-03 10:18:15'),
+(1068, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/subnets', '2025-06-03 10:18:37'),
+(1069, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/subnets', '2025-06-03 10:18:37'),
+(1070, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/vlanvrf', '2025-06-03 10:19:12'),
+(1071, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/subnets', '2025-06-03 10:19:19'),
+(1072, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/vlanvrf', '2025-06-03 10:20:07'),
+(1073, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/admin/profile', '2025-06-03 10:20:19'),
+(1074, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/dashboard/stats', '2025-06-03 10:20:31'),
+(1075, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/ips', '2025-06-03 10:21:09'),
+(1076, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/users', '2025-06-03 10:21:09'),
+(1077, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/ips', '2025-06-03 10:21:57'),
+(1078, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/users', '2025-06-03 10:21:58'),
+(1079, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/ips', '2025-06-03 10:21:58'),
+(1080, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/ips/logs', '2025-06-03 10:30:26'),
+(1081, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/ips', '2025-06-03 10:30:27'),
+(1082, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/subnets', '2025-06-03 10:30:30'),
+(1083, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/vlanvrf', '2025-06-03 10:30:32'),
+(1084, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/ips/logs', '2025-06-03 10:30:35'),
+(1085, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/users', '2025-06-03 10:30:38'),
+(1086, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/ips', '2025-06-03 10:30:38'),
+(1087, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/ips', '2025-06-03 10:30:44'),
+(1088, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/ips/57', '2025-06-03 10:31:02'),
+(1089, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/ips', '2025-06-03 10:31:02'),
+(1090, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/ips/54', '2025-06-03 10:32:57'),
+(1091, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/ips', '2025-06-03 10:32:57'),
+(1092, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/dashboard/stats', '2025-06-03 10:35:57'),
+(1093, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/users', '2025-06-03 10:35:58'),
+(1094, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/ips', '2025-06-03 10:35:58'),
+(1095, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/users/33', '2025-06-03 10:36:10'),
+(1096, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/users', '2025-06-03 10:36:10'),
+(1097, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/users', '2025-06-03 10:38:10'),
+(1098, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/ips', '2025-06-03 10:38:10'),
+(1099, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/dashboard/stats', '2025-06-03 10:38:29'),
+(1100, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/users', '2025-06-03 10:38:31'),
+(1101, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/ips', '2025-06-03 10:38:31'),
+(1102, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/dashboard/stats', '2025-06-03 10:38:50'),
+(1103, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/users', '2025-06-03 10:38:52'),
+(1104, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/ips', '2025-06-03 10:38:52'),
+(1105, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/users', '2025-06-03 10:42:03'),
+(1106, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/ips', '2025-06-03 10:42:03'),
+(1107, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/ips', '2025-06-03 10:42:31'),
+(1108, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/subnets', '2025-06-03 10:43:53'),
+(1109, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/ips', '2025-06-03 10:45:35'),
+(1110, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/ips/53', '2025-06-03 10:45:46'),
+(1111, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/ips', '2025-06-03 10:45:46'),
+(1112, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/subnets', '2025-06-03 10:46:28'),
+(1113, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/ips', '2025-06-03 10:52:02'),
+(1114, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/ips', '2025-06-03 10:52:09'),
+(1115, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/ips', '2025-06-03 10:52:10'),
+(1116, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/users', '2025-06-03 10:52:10'),
+(1117, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/ips', '2025-06-03 10:52:13'),
+(1118, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/ips/58', '2025-06-03 10:52:28'),
+(1119, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/ips', '2025-06-03 10:52:28'),
+(1120, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/ips/46', '2025-06-03 10:52:35'),
+(1121, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/ips', '2025-06-03 10:52:35'),
+(1122, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/ips/logs', '2025-06-03 10:52:45'),
+(1123, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/subnets', '2025-06-03 10:52:46'),
+(1124, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/ips/logs', '2025-06-03 10:52:47'),
+(1125, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/ips/logs', '2025-06-03 10:52:50'),
+(1126, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/subnets', '2025-06-03 10:52:52'),
+(1127, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/vlanvrf', '2025-06-03 10:52:55'),
+(1128, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/ips', '2025-06-03 10:52:56'),
+(1129, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/users', '2025-06-03 10:52:57'),
+(1130, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/ips', '2025-06-03 10:52:57'),
+(1131, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/ips', '2025-06-03 10:53:28'),
+(1132, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/ips/logs', '2025-06-03 10:53:36'),
+(1133, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/subnets', '2025-06-03 10:53:37'),
+(1134, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/ips', '2025-06-03 10:58:39'),
+(1135, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/ips/logs', '2025-06-03 10:59:02'),
+(1136, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/subnets', '2025-06-03 10:59:04'),
+(1137, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/subnets', '2025-06-03 11:01:15'),
+(1138, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/subnets', '2025-06-03 11:03:21'),
+(1139, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/vlanvrf', '2025-06-03 11:03:45'),
+(1140, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/subnets', '2025-06-03 11:03:53'),
+(1141, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/vlanvrf', '2025-06-03 11:04:01'),
+(1142, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/subnets', '2025-06-03 11:04:02'),
+(1143, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/dashboard/stats', '2025-06-03 11:09:47'),
+(1144, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/dashboard/stats', '2025-06-03 11:10:02'),
+(1145, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/ips', '2025-06-03 11:10:04'),
+(1146, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/users', '2025-06-03 11:10:04'),
+(1147, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/ips', '2025-06-03 11:10:05'),
+(1148, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/ips/logs', '2025-06-03 11:10:07'),
+(1149, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/subnets', '2025-06-03 11:10:08'),
+(1150, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/subnets', '2025-06-03 11:11:01'),
+(1151, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/subnets', '2025-06-03 11:11:01'),
+(1152, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/dashboard/stats', '2025-06-03 11:15:00'),
+(1153, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/ips', '2025-06-03 11:15:02'),
+(1154, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/users', '2025-06-03 11:15:02'),
+(1155, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/ips', '2025-06-03 11:15:11'),
+(1156, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/ips/logs', '2025-06-03 11:15:15'),
+(1157, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/subnets', '2025-06-03 11:15:16'),
+(1158, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/vlanvrf', '2025-06-03 11:15:17'),
+(1159, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/ips', '2025-06-03 11:15:19'),
+(1160, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/ips', '2025-06-03 11:15:20'),
+(1161, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/ips/52', '2025-06-03 11:15:28'),
+(1162, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/ips', '2025-06-03 11:15:28'),
+(1163, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/dashboard/stats', '2025-06-03 11:20:50'),
+(1164, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/subnets', '2025-06-03 11:21:36'),
+(1165, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/subnets', '2025-06-03 11:21:36'),
+(1166, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/vlanvrf', '2025-06-03 11:22:19'),
+(1167, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/subnets', '2025-06-03 11:27:10'),
+(1168, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/vlanvrf', '2025-06-03 11:29:00'),
+(1169, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/subnets', '2025-06-03 11:29:01'),
+(1170, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/vlanvrf', '2025-06-03 11:29:03'),
+(1171, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/vlanvrf', '2025-06-03 11:29:20'),
+(1172, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/ips/logs', '2025-06-03 11:29:26'),
+(1173, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/subnets', '2025-06-03 11:29:27');
+INSERT INTO `access_logs` (`id`, `ipAddress`, `userAgent`, `endpoint`, `timestamp`) VALUES
+(1174, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/vlanvrf', '2025-06-03 11:29:32'),
+(1175, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/vlanvrf/vlan', '2025-06-03 11:30:28'),
+(1176, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/vlanvrf', '2025-06-03 11:30:28'),
+(1177, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/vlanvrf/vlan', '2025-06-03 11:31:11'),
+(1178, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/vlanvrf', '2025-06-03 11:31:11'),
+(1179, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/vlanvrf', '2025-06-03 11:34:33'),
+(1180, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/dashboard/stats', '2025-06-03 11:34:41'),
+(1181, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/vlanvrf', '2025-06-03 11:34:44'),
+(1182, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/vlanvrf', '2025-06-03 11:38:53'),
+(1183, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/dashboard/stats', '2025-06-03 11:38:59'),
+(1184, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/vlanvrf', '2025-06-03 11:39:01'),
+(1185, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/subnets', '2025-06-03 11:39:36'),
+(1186, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/ips/logs', '2025-06-03 11:39:38'),
+(1187, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/ips', '2025-06-03 11:39:42'),
+(1188, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/users', '2025-06-03 11:39:50'),
+(1189, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/ips', '2025-06-03 11:39:50'),
+(1190, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/ips/logs', '2025-06-03 11:39:52'),
+(1191, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/ips', '2025-06-03 11:39:55'),
+(1192, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/users', '2025-06-03 11:39:58'),
+(1193, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/ips', '2025-06-03 11:39:58'),
+(1194, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/ips', '2025-06-03 11:40:00'),
+(1195, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/users', '2025-06-03 11:40:02'),
+(1196, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/ips', '2025-06-03 11:40:02'),
+(1197, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/ips', '2025-06-03 11:40:03'),
+(1198, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/dashboard/stats', '2025-06-03 11:43:27'),
+(1199, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/vlanvrf', '2025-06-03 11:43:29'),
+(1200, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/subnets', '2025-06-03 11:44:39'),
+(1201, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/ips/logs', '2025-06-03 11:44:45'),
+(1202, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/ips', '2025-06-03 11:45:13'),
+(1203, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/users', '2025-06-03 11:45:14'),
+(1204, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/ips', '2025-06-03 11:45:14'),
+(1205, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/ips', '2025-06-03 11:45:15'),
+(1206, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/users', '2025-06-03 11:45:17'),
+(1207, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/ips', '2025-06-03 11:45:17'),
+(1208, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/ips', '2025-06-03 11:45:55'),
+(1209, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/subnets', '2025-06-03 11:46:35'),
+(1210, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/vlanvrf', '2025-06-03 11:46:35'),
+(1211, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/vlanvrf/vlan', '2025-06-03 11:46:47'),
+(1212, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/vlanvrf', '2025-06-03 11:46:47'),
+(1213, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/users', '2025-06-03 11:48:19'),
+(1214, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/ips', '2025-06-03 11:48:19'),
+(1215, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/ips', '2025-06-03 11:48:22'),
+(1216, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/users', '2025-06-03 11:48:22'),
+(1217, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/ips', '2025-06-03 11:48:22'),
+(1218, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/users', '2025-06-03 11:52:09'),
+(1219, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/ips', '2025-06-03 11:52:09'),
+(1220, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/dashboard/stats', '2025-06-03 11:52:18'),
+(1221, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/dashboard/stats', '2025-06-03 11:52:21'),
+(1222, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/users', '2025-06-03 11:52:23'),
+(1223, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/ips', '2025-06-03 11:52:23'),
+(1224, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/users', '2025-06-03 11:52:41'),
+(1225, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/ips', '2025-06-03 11:52:41'),
+(1226, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/ips', '2025-06-03 11:53:02'),
+(1227, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/users', '2025-06-03 11:53:06'),
+(1228, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/ips', '2025-06-03 11:53:06'),
+(1229, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/dashboard/stats', '2025-06-03 11:53:46'),
+(1230, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/dashboard/stats', '2025-06-03 11:54:05'),
+(1231, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/users', '2025-06-03 11:54:18'),
+(1232, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/ips', '2025-06-03 11:54:18'),
+(1233, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/users', '2025-06-03 11:55:20'),
+(1234, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/users', '2025-06-03 11:55:20'),
+(1235, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/users/34', '2025-06-03 11:56:53'),
+(1236, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/users', '2025-06-03 11:56:53'),
+(1237, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/ips', '2025-06-03 11:57:21'),
+(1238, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/ips/logs', '2025-06-03 11:57:24'),
+(1239, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/subnets', '2025-06-03 11:57:26'),
+(1240, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/vlanvrf', '2025-06-03 11:57:28'),
+(1241, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/subnets', '2025-06-03 11:57:32'),
+(1242, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/ips/logs', '2025-06-03 11:57:36'),
+(1243, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/ips', '2025-06-03 11:58:20'),
+(1244, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/ips', '2025-06-03 11:59:09'),
+(1245, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/dashboard/stats', '2025-06-03 11:59:13'),
+(1246, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/subnets', '2025-06-03 11:59:18'),
+(1247, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/ips/logs', '2025-06-03 11:59:20'),
+(1248, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/subnets', '2025-06-03 11:59:21'),
+(1249, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/vlanvrf', '2025-06-03 11:59:24'),
+(1250, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/vlanvrf/vlan', '2025-06-03 12:00:25'),
+(1251, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/vlanvrf', '2025-06-03 12:00:25'),
+(1252, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/vlanvrf/vrf', '2025-06-03 12:01:07'),
+(1253, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/vlanvrf/vrf', '2025-06-03 12:01:11'),
+(1254, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/vlanvrf/vrf', '2025-06-03 12:01:20'),
+(1255, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/subnets', '2025-06-03 12:01:24'),
+(1256, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/admin/profile', '2025-06-03 12:01:26'),
+(1257, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/dashboard/stats', '2025-06-03 12:01:29'),
+(1258, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/admin/profile', '2025-06-03 12:01:31'),
+(1259, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/vlanvrf', '2025-06-03 12:03:54'),
+(1260, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/subnets', '2025-06-03 12:03:55'),
+(1261, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/ips/logs', '2025-06-03 12:03:56'),
+(1262, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/vlanvrf', '2025-06-03 12:03:58'),
+(1263, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/vlanvrf/vrf', '2025-06-03 12:04:25'),
+(1264, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/vlanvrf/vrf', '2025-06-03 12:04:30'),
+(1265, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/vlanvrf/vrf', '2025-06-03 12:06:34'),
+(1266, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/vlanvrf/vrf', '2025-06-03 12:06:39'),
+(1267, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/vlanvrf/vrf', '2025-06-03 12:06:47'),
+(1268, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/vlanvrf', '2025-06-03 12:08:55'),
+(1269, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/vlanvrf/vrf', '2025-06-03 12:09:20'),
+(1270, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/vlanvrf', '2025-06-03 12:09:28'),
+(1271, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/vlanvrf/vrf', '2025-06-03 12:09:36'),
+(1272, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/dashboard/stats', '2025-06-03 12:09:54'),
+(1273, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/vlanvrf', '2025-06-03 12:09:56'),
+(1274, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/vlanvrf', '2025-06-03 12:10:57'),
+(1275, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/dashboard/stats', '2025-06-03 12:11:21'),
+(1276, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/dashboard/stats', '2025-06-03 12:11:25'),
+(1277, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/vlanvrf', '2025-06-03 12:11:27'),
+(1278, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/vlanvrf/vlan', '2025-06-03 12:11:50'),
+(1279, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/vlanvrf', '2025-06-03 12:11:50'),
+(1280, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', '/api/vlanvrf/vrf', '2025-06-03 12:12:14'),
+(1281, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36', '/api/dashboard/stats', '2025-06-03 14:01:53'),
+(1282, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36', '/api/subnets', '2025-06-03 14:01:59'),
+(1283, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36', '/api/vlanvrf', '2025-06-03 14:02:00'),
+(1284, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36', '/api/admin/profile', '2025-06-03 14:02:01'),
+(1285, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36', '/api/dashboard/stats', '2025-06-03 14:02:08'),
+(1286, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36', '/api/admin/login', '2025-06-03 14:02:19'),
+(1287, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36', '/api/admin/login', '2025-06-03 14:02:24'),
+(1288, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36', '/api/dashboard/stats', '2025-06-03 14:02:24'),
+(1289, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36', '/api/admin/profile', '2025-06-03 14:02:30'),
+(1290, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36', '/api/admin/profile', '2025-06-03 14:02:33'),
+(1291, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36', '/api/admin/profile', '2025-06-03 14:12:00'),
+(1292, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36', '/api/dashboard/stats', '2025-06-03 14:12:02'),
+(1293, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36', '/api/admin/login', '2025-06-03 14:12:13'),
+(1294, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36', '/api/dashboard/stats', '2025-06-03 14:12:13'),
+(1295, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36', '/api/admin/profile', '2025-06-03 14:12:15'),
+(1296, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36', '/api/admin/profile', '2025-06-03 14:12:28'),
+(1297, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36', '/api/dashboard/stats', '2025-06-03 14:14:28'),
+(1298, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36', '/api/admin/login', '2025-06-03 14:14:37'),
+(1299, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36', '/api/dashboard/stats', '2025-06-03 14:14:37'),
+(1300, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36', '/api/admin/profile', '2025-06-03 14:14:40'),
+(1301, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36', '/api/dashboard/stats', '2025-06-03 14:14:42'),
+(1302, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36', '/api/admin/profile', '2025-06-03 14:14:43'),
+(1303, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36', '/api/admin/profile', '2025-06-03 14:18:00'),
+(1304, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36', '/api/admin/profile', '2025-06-03 14:18:12'),
+(1305, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36', '/api/dashboard/stats', '2025-06-03 14:21:53'),
+(1306, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36', '/api/admin/login', '2025-06-03 14:22:01'),
+(1307, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36', '/api/dashboard/stats', '2025-06-03 14:22:01'),
+(1308, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36', '/api/vlanvrf', '2025-06-03 14:22:04'),
+(1309, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36', '/api/admin/profile', '2025-06-03 14:22:06'),
+(1310, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36', '/api/admin/profile', '2025-06-03 14:22:21'),
+(1311, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36', '/api/dashboard/stats', '2025-06-03 14:22:53'),
+(1312, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36', '/api/ips', '2025-06-03 14:22:56'),
+(1313, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36', '/api/users', '2025-06-03 14:22:56'),
+(1314, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36', '/api/users', '2025-06-03 14:23:28'),
+(1315, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36', '/api/users', '2025-06-03 14:23:28'),
+(1316, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36', '/api/users/35', '2025-06-03 14:23:32'),
+(1317, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36', '/api/users', '2025-06-03 14:23:32'),
+(1318, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36', '/api/ips', '2025-06-03 14:23:35'),
+(1319, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36', '/api/ips', '2025-06-03 14:23:56'),
+(1320, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36', '/api/ips', '2025-06-03 14:24:00'),
+(1321, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36', '/api/ips/60', '2025-06-03 14:24:05'),
+(1322, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36', '/api/ips', '2025-06-03 14:24:05'),
+(1323, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36', '/api/ips/logs', '2025-06-03 14:24:49'),
+(1324, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36', '/api/subnets', '2025-06-03 14:24:50'),
+(1325, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36', '/api/vlanvrf', '2025-06-03 14:24:51'),
+(1326, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36', '/api/vlanvrf/vlan', '2025-06-03 14:25:18'),
+(1327, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36', '/api/vlanvrf', '2025-06-03 14:25:18'),
+(1328, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36', '/api/subnets', '2025-06-03 14:25:30'),
+(1329, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36', '/api/subnets', '2025-06-03 14:25:44'),
+(1330, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36', '/api/subnets', '2025-06-03 14:25:44'),
+(1331, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36', '/api/vlanvrf', '2025-06-03 14:25:54'),
+(1332, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36', '/api/subnets', '2025-06-03 14:25:55'),
+(1333, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36', '/api/ips/logs', '2025-06-03 14:25:56'),
+(1334, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36', '/api/ips', '2025-06-03 14:25:57'),
+(1335, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36', '/api/users', '2025-06-03 14:25:58'),
+(1336, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36', '/api/ips', '2025-06-03 14:25:58'),
+(1337, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36', '/api/ips/logs', '2025-06-03 14:26:02'),
+(1338, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36', '/api/subnets', '2025-06-03 14:26:03'),
+(1339, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36', '/api/dashboard/stats', '2025-06-03 14:29:03'),
+(1340, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36', '/api/dashboard/stats', '2025-06-03 14:29:06'),
+(1341, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36', '/api/admin/login', '2025-06-03 14:29:18'),
+(1342, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36', '/api/admin/login', '2025-06-03 14:29:24'),
+(1343, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36', '/api/admin/login', '2025-06-03 14:29:24'),
+(1344, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36', '/api/admin/login', '2025-06-03 14:29:24'),
+(1345, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36', '/api/admin/login', '2025-06-03 14:29:25'),
+(1346, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36', '/api/admin/login', '2025-06-03 14:35:09'),
+(1347, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36', '/api/admin/login', '2025-06-03 14:35:11'),
+(1348, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36', '/api/admin/login', '2025-06-03 14:35:11'),
+(1349, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36', '/api/admin/login', '2025-06-03 14:35:20'),
+(1350, '::1', 'Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Mobile Safari/537.36', '/api/admin/login', '2025-06-03 14:37:57'),
+(1351, '::1', 'Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Mobile Safari/537.36', '/api/admin/login', '2025-06-03 14:38:30'),
+(1352, '::1', 'Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Mobile Safari/537.36', '/api/dashboard/stats', '2025-06-03 14:38:30'),
+(1353, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36', '/api/dashboard/stats', '2025-06-03 14:45:24'),
+(1354, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36', '/api/vlanvrf', '2025-06-03 14:50:12'),
+(1355, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36', '/api/admin/profile', '2025-06-03 14:50:14'),
+(1356, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36', '/api/admin/profile', '2025-06-03 14:50:16'),
+(1357, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36', '/api/dashboard/stats', '2025-06-03 14:50:19'),
+(1358, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36', '/api/vlanvrf', '2025-06-03 14:50:20'),
+(1359, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36', '/api/admin/profile', '2025-06-03 14:50:21'),
+(1360, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36', '/api/admin/profile', '2025-06-03 14:50:24'),
+(1361, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36', '/api/admin/profile', '2025-06-03 14:51:21'),
+(1362, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36', '/api/dashboard/stats', '2025-06-03 14:51:25'),
+(1363, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36', '/api/admin/profile', '2025-06-03 14:51:27'),
+(1364, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36', '/api/admin/profile', '2025-06-03 14:51:46'),
+(1365, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36', '/api/admin/profile', '2025-06-03 14:56:06'),
+(1366, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36', '/api/admin/profile', '2025-06-03 14:58:56'),
+(1367, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36', '/api/admin/profile', '2025-06-03 14:59:06'),
+(1368, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36', '/api/admin/profile', '2025-06-03 14:59:11'),
+(1369, '::ffff:127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36', '/api/dashboard/stats', '2025-06-03 14:59:18'),
+(1370, '::ffff:127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36', '/api/dashboard/stats', '2025-06-03 14:59:23'),
+(1371, '::ffff:127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36', '/api/admin/login', '2025-06-03 14:59:38'),
+(1372, '::ffff:127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36', '/api/dashboard/stats', '2025-06-03 14:59:38'),
+(1373, '::ffff:127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36', '/api/admin/profile', '2025-06-03 14:59:42'),
+(1374, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36', '/api/admin/profile', '2025-06-03 14:59:58'),
+(1375, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36', '/api/admin/profile', '2025-06-03 15:00:15');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `admin`
+-- Table structure for table `admin`
 --
 
 CREATE TABLE `admin` (
-  `id` int(11) NOT NULL,
-  `username` varchar(100) NOT NULL,
-  `password` varchar(255) NOT NULL,
-  `created_at` timestamp NULL DEFAULT current_timestamp()
+  `id` int NOT NULL,
+  `username` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data untuk tabel `admin`
+-- Dumping data for table `admin`
 --
 
-INSERT INTO `admin` (`id`, `username`, `password`, `created_at`) VALUES
-(1, 'admin', 'admin123', '2025-04-27 11:46:34');
+INSERT INTO `admin` (`id`, `username`, `password`, `email`, `created_at`) VALUES
+(1, 'admin', 'admin123', 'vanesvernando72@gmail.com', '2025-04-27 11:46:34');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `ip_addresses`
+-- Table structure for table `ip_addresses`
 --
 
 CREATE TABLE `ip_addresses` (
-  `id` int(11) NOT NULL,
-  `ipAddress` varchar(45) NOT NULL,
-  `subnet` varchar(45) NOT NULL,
-  `assignedTo` varchar(100) DEFAULT 'Available',
-  `description` text DEFAULT NULL,
-  `status` varchar(20) DEFAULT 'Available',
-  `created_at` timestamp NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `id` int NOT NULL,
+  `ipAddress` varchar(45) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `subnet` varchar(45) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `assignedTo` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT 'Available',
+  `description` text COLLATE utf8mb4_unicode_ci,
+  `status` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT 'Available',
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data untuk tabel `ip_addresses`
+-- Dumping data for table `ip_addresses`
 --
 
 INSERT INTO `ip_addresses` (`id`, `ipAddress`, `subnet`, `assignedTo`, `description`, `status`, `created_at`, `updated_at`) VALUES
-(1, '192.168.70.2', '255.255.255.64', 'Office', 'New', 'assigned', '2025-04-27 13:25:27', '2025-05-13 15:09:20'),
+(1, '192.168.70.2', '255.255.255.64', 'Customer', 'New', 'assigned', '2025-04-27 13:25:27', '2025-06-03 10:15:15'),
 (2, '192.168.70.2', '255.255.255.128', 'Operator', 'op', 'assigned', '2025-04-29 09:59:45', '2025-05-13 14:34:53'),
 (3, '192.168.100.5', '255.255.255.32', 'Office', 'New IP', 'assigned', '2025-04-30 13:08:46', '2025-05-13 14:34:40'),
 (5, '192.168.100.1', '255.255.255.64', 'Customer', 'New Add IP', 'assigned', '2025-05-13 04:02:49', '2025-05-13 15:09:44'),
@@ -1185,53 +1513,54 @@ INSERT INTO `ip_addresses` (`id`, `ipAddress`, `subnet`, `assignedTo`, `descript
 (49, '192.168.6.1', '255.255.240.0', 'Customer', 'Network Printer', 'available', '2025-05-13 14:21:41', '2025-05-13 15:11:41'),
 (50, '192.168.6.2', '255.255.240.0', 'Customer', 'Home Hub', 'available', '2025-05-13 14:21:41', '2025-05-13 15:11:47'),
 (51, '192.168.6.3', '255.255.240.0', 'Operator', 'Redundant Server', 'available', '2025-05-13 14:21:41', '2025-05-13 14:21:41'),
-(52, '192.168.6.4', '255.255.240.0', 'Customer', 'IP Speaker', 'available', '2025-05-13 14:21:41', '2025-05-13 15:11:20'),
-(53, '192.168.6.5', '255.255.240.0', 'Office', 'Meeting Room Device', 'available', '2025-05-13 14:21:41', '2025-05-13 15:11:13'),
-(54, '192.168.6.6', '255.255.240.0', 'Customer', 'Experimental Device', 'inactive', '2025-05-13 14:21:41', '2025-05-13 15:11:06'),
-(55, '192.168.6.7', '255.255.240.0', 'Customer', 'Legacy System', 'available', '2025-05-13 14:21:41', '2025-05-13 14:21:41');
+(59, '192.168.225.27', '255.255.255.252', 'Customer', 'news', 'Available', '2025-06-03 11:59:09', '2025-06-03 11:59:09');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `subnets`
+-- Table structure for table `subnets`
 --
 
 CREATE TABLE `subnets` (
-  `id` int(11) NOT NULL,
-  `subnet` varchar(255) NOT NULL,
-  `type` enum('IPv4','IPv6') NOT NULL,
-  `description` text DEFAULT NULL,
-  `vlan_id` int(11) DEFAULT NULL,
-  `vrf_id` int(11) DEFAULT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `id` int NOT NULL,
+  `subnet` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `type` enum('IPv4','IPv6') COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` text COLLATE utf8mb4_unicode_ci,
+  `vlan_id` int DEFAULT NULL,
+  `vrf_id` int DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data untuk tabel `subnets`
+-- Dumping data for table `subnets`
 --
 
 INSERT INTO `subnets` (`id`, `subnet`, `type`, `description`, `vlan_id`, `vrf_id`, `created_at`, `updated_at`) VALUES
 (1, '255.255.255.0', 'IPv4', 'new', NULL, NULL, '2025-04-29 10:42:10', '2025-04-29 10:42:10'),
 (2, '255.255.255.16', 'IPv4', 'news', NULL, NULL, '2025-04-29 11:18:11', '2025-04-29 11:18:11'),
-(3, '192.168.168.255.255.1', 'IPv6', 'Update', NULL, NULL, '2025-05-13 04:33:55', '2025-05-13 04:33:55');
+(3, '192.168.168.255.255.1', 'IPv6', 'Update', NULL, NULL, '2025-05-13 04:33:55', '2025-05-13 04:33:55'),
+(4, '192.168.168.255.255.1', 'IPv6', 'tes', NULL, NULL, '2025-06-03 10:18:37', '2025-06-03 10:18:37'),
+(5, '192.168.122.2', 'IPv6', 'tes update', NULL, NULL, '2025-06-03 11:11:01', '2025-06-03 11:11:01'),
+(6, 'tes', 'IPv4', 'es', NULL, NULL, '2025-06-03 11:21:36', '2025-06-03 11:21:36'),
+(7, '192.165.100.11', 'IPv6', 'tes', NULL, NULL, '2025-06-03 14:25:44', '2025-06-03 14:25:44');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `users`
+-- Table structure for table `users`
 --
 
 CREATE TABLE `users` (
-  `id` int(11) NOT NULL,
-  `name` varchar(100) NOT NULL,
-  `location` varchar(100) DEFAULT NULL,
-  `os` varchar(50) DEFAULT NULL,
-  `id_ip` int(11) DEFAULT NULL
+  `id` int NOT NULL,
+  `name` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
+  `location` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `os` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `id_ip` int DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `users`
+-- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`id`, `name`, `location`, `os`, `id_ip`) VALUES
@@ -1265,44 +1594,49 @@ INSERT INTO `users` (`id`, `name`, `location`, `os`, `id_ip`) VALUES
 (29, 'Rendi Saputra', 'Serang', 'Android', 29),
 (30, 'Salsa Kamila', 'Cilegon', 'Windows', 30),
 (31, 'Teguh Irawan', 'Jambi', 'MacOS', 31),
-(32, 'Diana Lestari', 'Balikpapan', 'Android', 32),
-(33, 'Ari Pratama', 'Ambon', 'Linux', 33);
+(32, 'Diana Lestari', 'Balikpapan', 'Android', 32);
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `vlan`
+-- Table structure for table `vlan`
 --
 
 CREATE TABLE `vlan` (
-  `id` int(11) NOT NULL,
-  `vlan_id` int(11) NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `description` text DEFAULT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `id` int NOT NULL,
+  `vlan_id` int NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` text COLLATE utf8mb4_unicode_ci,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data untuk tabel `vlan`
+-- Dumping data for table `vlan`
 --
 
 INSERT INTO `vlan` (`id`, `vlan_id`, `name`, `description`, `created_at`, `updated_at`) VALUES
-(1, 12, 'vlan12', 'new', '2025-04-29 11:22:41', '2025-04-29 11:22:41');
+(1, 12, 'vlan12', 'new', '2025-04-29 11:22:41', '2025-04-29 11:22:41'),
+(2, 1, 'hgfckhjjkl;klkjfghj', 'njhngfghjkfhdskkjhdguytoiu', '2025-06-03 11:30:28', '2025-06-03 11:30:28'),
+(3, 2, 'tes size', '\'k;jlhkgdhjvklp[oiyutrdhfghiop[[poiutyrertdyuio\npo\'i;ulytrertyuiop][\\\n[]p\'oiuyteyop[][po7iuyetrdfjgkhlpopitwrewtyuiop[p8o7i6uytwrtyfugo\'i;ulytrerdfugh[poiuyetghj[opoiuytrdfopiouytg', '2025-06-03 11:31:11', '2025-06-03 11:31:11'),
+(4, 3, 'testing', 'testing', '2025-06-03 11:46:47', '2025-06-03 11:46:47'),
+(5, 34, 'VLAN34', 'for customer', '2025-06-03 12:00:25', '2025-06-03 12:00:25'),
+(6, 77, 'tes', 'tes\n', '2025-06-03 12:11:50', '2025-06-03 12:11:50'),
+(7, 90, 'tes', 'tes', '2025-06-03 14:25:18', '2025-06-03 14:25:18');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `vrf`
+-- Table structure for table `vrf`
 --
 
 CREATE TABLE `vrf` (
-  `id` int(11) NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `route_distinguisher` varchar(255) NOT NULL,
-  `description` text DEFAULT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `id` int NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `route_distinguisher` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` text COLLATE utf8mb4_unicode_ci,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -1310,25 +1644,25 @@ CREATE TABLE `vrf` (
 --
 
 --
--- Indeks untuk tabel `access_logs`
+-- Indexes for table `access_logs`
 --
 ALTER TABLE `access_logs`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `admin`
+-- Indexes for table `admin`
 --
 ALTER TABLE `admin`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `ip_addresses`
+-- Indexes for table `ip_addresses`
 --
 ALTER TABLE `ip_addresses`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `subnets`
+-- Indexes for table `subnets`
 --
 ALTER TABLE `subnets`
   ADD PRIMARY KEY (`id`),
@@ -1336,83 +1670,83 @@ ALTER TABLE `subnets`
   ADD KEY `vrf_id` (`vrf_id`);
 
 --
--- Indeks untuk tabel `users`
+-- Indexes for table `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
   ADD KEY `id_ip` (`id_ip`);
 
 --
--- Indeks untuk tabel `vlan`
+-- Indexes for table `vlan`
 --
 ALTER TABLE `vlan`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `vrf`
+-- Indexes for table `vrf`
 --
 ALTER TABLE `vrf`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT untuk tabel yang dibuang
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT untuk tabel `access_logs`
+-- AUTO_INCREMENT for table `access_logs`
 --
 ALTER TABLE `access_logs`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1050;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1376;
 
 --
--- AUTO_INCREMENT untuk tabel `admin`
+-- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT untuk tabel `ip_addresses`
+-- AUTO_INCREMENT for table `ip_addresses`
 --
 ALTER TABLE `ip_addresses`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
 
 --
--- AUTO_INCREMENT untuk tabel `subnets`
+-- AUTO_INCREMENT for table `subnets`
 --
 ALTER TABLE `subnets`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- AUTO_INCREMENT untuk tabel `users`
+-- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
--- AUTO_INCREMENT untuk tabel `vlan`
+-- AUTO_INCREMENT for table `vlan`
 --
 ALTER TABLE `vlan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- AUTO_INCREMENT untuk tabel `vrf`
+-- AUTO_INCREMENT for table `vrf`
 --
 ALTER TABLE `vrf`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
 
 --
--- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
+-- Constraints for dumped tables
 --
 
 --
--- Ketidakleluasaan untuk tabel `subnets`
+-- Constraints for table `subnets`
 --
 ALTER TABLE `subnets`
   ADD CONSTRAINT `subnets_ibfk_1` FOREIGN KEY (`vlan_id`) REFERENCES `vlan` (`id`) ON DELETE SET NULL,
   ADD CONSTRAINT `subnets_ibfk_2` FOREIGN KEY (`vrf_id`) REFERENCES `vrf` (`id`) ON DELETE SET NULL;
 
 --
--- Ketidakleluasaan untuk tabel `users`
+-- Constraints for table `users`
 --
 ALTER TABLE `users`
   ADD CONSTRAINT `users_ibfk_1` FOREIGN KEY (`id_ip`) REFERENCES `ip_addresses` (`id`) ON DELETE SET NULL;

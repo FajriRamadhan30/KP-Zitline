@@ -4,7 +4,7 @@ import { Input } from "../components/ui/input";
 import { Button } from "../components/ui/button";
 import styles from "../components/CSS/AdminLogin.module.css";
 
-const API_URL = "http://localhost:5000"; // URL backend kamu
+const API_URL = "http://localhost:5000";
 
 function AdminLogin({ onLogin }) {
   const [username, setUsername] = useState("");

@@ -5,6 +5,7 @@ const db = require('../config/db');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
+// Handler untuk login admin
 exports.loginAdmin = (req, res) => {
   const { username, password } = req.body;
 
@@ -12,9 +13,9 @@ exports.loginAdmin = (req, res) => {
     return res.status(400).json({ message: 'Username dan password wajib diisi' });
   }
 
-  db.query('SELECT * FROM admin_users WHERE username = ?', [username], async (err, results) => {
+  db.query('SELECT * FROM admin WHERE username = ?', [username], async (err, results) => {
     if (err) {
-      console.error('❌ Database error:', err);
+      console.error('❌ Database error during login:', err);
       return res.status(500).json({ message: 'Terjadi kesalahan pada server' });
     }
 
@@ -24,27 +25,31 @@ exports.loginAdmin = (req, res) => {
 
     const admin = results[0];
 
-    // Cek akun aktif
-    if (admin.is_active !== 1) {
-      return res.status(403).json({ message: 'Akun tidak aktif. Hubungi administrator.' });
-    }
+    // --- HAPUS ATAU KOMENTARI BLOK VALIDASI is_active jika Anda memilih opsi 2 ---
+    // if (admin.is_active !== 1) {
+    //   return res.status(403).json({ message: 'Akun tidak aktif. Hubungi administrator.' });
+    // }
 
-    // Cek password
-    const isMatch = await bcrypt.compare(password, admin.password);
-
-    if (!isMatch) {
+    // --- UBAH BAGIAN INI KEMBALI KE PERBANDINGAN PLAINTEXT ---
+    // Hapus baris "const isMatch = await bcrypt.compare(password, admin.password);"
+    // Dan ganti kondisi pengecekan password:
+    if (admin.password !== password) { // <--- INI ADALAH PERBANDINGAN PLAINTEXT
       return res.status(400).json({ message: 'Password salah' });
     }
+    // --- AKHIR PERUBAHAN ---
 
-    // Generate token
+
     const token = jwt.sign(
       { id: admin.id, username: admin.username },
       process.env.JWT_SECRET,
       { expiresIn: '1d' }
     );
 
-    // Update last_login
-    db.query('UPDATE admin_users SET last_login = NOW() WHERE id = ?', [admin.id]);
+    db.query('UPDATE admin SET last_login = NOW() WHERE id = ?', [admin.id], (updateErr) => {
+      if (updateErr) {
+        console.error('❌ Error updating last_login:', updateErr);
+      }
+    });
 
     res.json({
       message: 'Login berhasil',
@@ -56,7 +61,7 @@ exports.loginAdmin = (req, res) => {
 
 
 //==================================//
-//GET PROFIL ADMIN//
+// GET PROFIL ADMIN //
 //==================================//
 
 exports.getAdminProfile = (req, res) => {
@@ -74,7 +79,7 @@ exports.getAdminProfile = (req, res) => {
 
     db.query('SELECT id, username, email FROM admin WHERE id = ?', [adminId], (err, results) => {
       if (err) {
-        console.error('❌ Database error:', err);
+        console.error('❌ Database error during getAdminProfile:', err);
         return res.status(500).json({ message: 'Terjadi kesalahan pada server' });
       }
 
@@ -86,13 +91,13 @@ exports.getAdminProfile = (req, res) => {
       res.json(adminProfile);
     });
   } catch (error) {
-    console.error('❌ Token error:', error);
+    console.error('❌ Token error during getAdminProfile:', error);
     return res.status(401).json({ message: 'Token tidak valid' });
   }
 };
 
 //===============================================//
-//EDIT PROFILE//
+// EDIT PROFILE //
 //===============================================//
 
 exports.updateAdminProfile = (req, res) => {
@@ -118,15 +123,22 @@ exports.updateAdminProfile = (req, res) => {
       [username, email, adminId],
       (err, result) => {
         if (err) {
-          console.error('❌ Database error:', err);
-          return res.status(500).json({ message: 'Terjadi kesalahan pada server' });
+          console.error('❌ Database error during updateAdminProfile:', err);
+          if (err.code === 'ER_DUP_ENTRY' || err.errno === 1062) {
+            return res.status(409).json({ message: 'Username atau email sudah digunakan.' });
+          }
+          return res.status(500).json({ message: 'Terjadi kesalahan pada server saat memperbarui profil' });
+        }
+
+        if (result.affectedRows === 0) {
+          return res.status(404).json({ message: 'Profil admin tidak ditemukan atau tidak ada perubahan.' });
         }
 
         res.json({ message: 'Profil berhasil diperbarui' });
       }
     );
   } catch (error) {
-    console.error('❌ Token error:', error);
+    console.error('❌ Token error during updateAdminProfile:', error);
     return res.status(401).json({ message: 'Token tidak valid' });
   }
 };

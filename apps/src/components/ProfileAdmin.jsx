@@ -18,7 +18,11 @@ function ProfileAdmin() {
         if (!response.ok) throw new Error('Gagal mengambil data profil');
 
         const data = await response.json();
-        setAdminInfo(data);
+        // PASTIkan nilai selalu string, walaupun dari backend null/undefined
+        setAdminInfo({
+          username: data.username || '', // Tambahkan fallback string kosong
+          email: data.email || ''       // Tambahkan fallback string kosong
+        });
       } catch (error) {
         console.error('Error:', error);
         showPopup('❌ Gagal mengambil data profil', 'error');
@@ -31,6 +35,17 @@ function ProfileAdmin() {
   }, []);
 
   const handleSave = async () => {
+    // --- TAMBAHKAN VALIDASI FRONTEND DI SINI ---
+    if (!adminInfo.username.trim()) {
+      showPopup('Username tidak boleh kosong!', 'error');
+      return;
+    }
+    if (!adminInfo.email.trim()) {
+      showPopup('Email tidak boleh kosong!', 'error');
+      return;
+    }
+    // --- AKHIR VALIDASI FRONTEND ---
+
     try {
       const token = localStorage.getItem('token');
       const response = await fetch('http://localhost:5000/api/admin/profile', {
@@ -43,13 +58,16 @@ function ProfileAdmin() {
       });
 
       const result = await response.json();
-      if (!response.ok) throw new Error(result.message);
+      if (!response.ok) {
+        // Gunakan pesan dari backend jika ada
+        throw new Error(result.message || 'Gagal memperbarui profil.');
+      }
 
       showPopup('✅ Profil berhasil diperbarui', 'success');
       setEditMode(false);
     } catch (error) {
       console.error('Update error:', error);
-      showPopup('❌ Gagal memperbarui profil', 'error');
+      showPopup(error.message || '❌ Gagal memperbarui profil', 'error'); // Tampilkan pesan error dari throw
     }
   };
 
@@ -63,43 +81,6 @@ function ProfileAdmin() {
   return (
     <div className="profile-admin-container">
       <h2>👤 Admin Profile</h2>
-
-      <div className="profile-card">
-        <div className="profile-row">
-          <label>Username:</label>
-          {editMode ? (
-            <input
-              type="text"
-              value={adminInfo.username}
-              onChange={(e) => setAdminInfo({ ...adminInfo, username: e.target.value })}
-            />
-          ) : (
-            <span>{adminInfo.username}</span>
-          )}
-        </div>
-
-        <div className="profile-row">
-          <label>Email:</label>
-          {editMode ? (
-            <input
-              type="email"
-              value={adminInfo.email}
-              onChange={(e) => setAdminInfo({ ...adminInfo, email: e.target.value })}
-            />
-          ) : (
-            <span>{adminInfo.email || '-'}</span>
-          )}
-        </div>
-      </div>
-
-      {editMode ? (
-        <>
-          <button onClick={handleSave} className="edit-profile-btn">💾 Simpan</button>
-          <button onClick={() => setEditMode(false)} className="edit-profile-btn" style={{ backgroundColor: '#f44336', marginTop: '10px' }}>❌ Batal</button>
-        </>
-      ) : (
-        <button onClick={() => setEditMode(true)} className="edit-profile-btn">✏️ Edit Profil</button>
-      )}
 
       {/* Popup Section */}
       {popup.show && (
@@ -141,6 +122,43 @@ function ProfileAdmin() {
           </div>
           {popup.message}
         </div>
+      )}
+
+      <div className="profile-card">
+        <div className="profile-row">
+          <label>Username:</label>
+          {editMode ? (
+            <input
+              type="text"
+              value={adminInfo.username || ''} // Pastikan ada fallback string kosong
+              onChange={(e) => setAdminInfo({ ...adminInfo, username: e.target.value })}
+            />
+          ) : (
+            <span>{adminInfo.username}</span>
+          )}
+        </div>
+
+        <div className="profile-row">
+          <label>Email:</label>
+          {editMode ? (
+            <input
+              type="email"
+              value={adminInfo.email || ''} // Pastikan ada fallback string kosong
+              onChange={(e) => setAdminInfo({ ...adminInfo, email: e.target.value })}
+            />
+          ) : (
+            <span>{adminInfo.email || '-'}</span>
+          )}
+        </div>
+      </div>
+
+      {editMode ? (
+        <>
+          <button onClick={handleSave} className="edit-profile-btn">💾 Simpan</button>
+          <button onClick={() => setEditMode(false)} className="edit-profile-btn" style={{ backgroundColor: '#f44336', marginTop: '10px' }}>❌ Batal</button>
+        </>
+      ) : (
+        <button onClick={() => setEditMode(true)} className="edit-profile-btn">✏️ Edit Profil</button>
       )}
     </div>
   );
