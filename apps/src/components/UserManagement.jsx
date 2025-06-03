@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react"; // Tambahkan useRef di sini
 import { api } from "../api/api";
 import "../components/CSS/UserManagement.css";
 
@@ -12,6 +12,16 @@ function UserManagement() {
   const [searchTerm, setSearchTerm] = useState("");
   const [locationFilter, setLocationFilter] = useState("");
   const [osFilter, setOsFilter] = useState("");
+
+  // State untuk pop-up konfirmasi delete
+  const [showConfirmPopup, setShowConfirmPopup] = useState(false);
+  const [ipToDelete, setIpToDelete] = useState(null); // Menyimpan objek user yang akan dihapus
+  
+  // State untuk pop-up sukses delete
+  const [showSuccessPopup, setShowSuccessPopup] = useState(false);
+
+  // Buat ref untuk elemen form
+  const formRef = useRef(null); 
 
   const fetchUsers = () => {
     api.get("/users")
@@ -69,12 +79,32 @@ function UserManagement() {
     });
     setEditingId(user.id);
     setError("");
+    
+    // Gunakan ref untuk scroll ke form
+    if (formRef.current) {
+      formRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' }); 
+    }
   };
 
-  const handleDelete = async (id) => {
-    if (window.confirm("Yakin hapus user ini?")) {
-      await api.delete(`/users/${id}`);
-      fetchUsers();
+  // Fungsi untuk menampilkan pop-up konfirmasi delete
+  const handleDelete = (user) => { // Menerima objek user, bukan hanya ID
+    setIpToDelete(user);
+    setShowConfirmPopup(true);
+  };
+
+  // Fungsi untuk mengkonfirmasi penghapusan setelah pop-up
+  const confirmDelete = async () => {
+    if (ipToDelete) {
+      try {
+        await api.delete(`/users/${ipToDelete.id}`);
+        fetchUsers();
+        setShowConfirmPopup(false); // Sembunyikan pop-up konfirmasi
+        setShowSuccessPopup(true); // Tampilkan pop-up sukses
+        setIpToDelete(null); // Reset IP yang akan dihapus
+      } catch (err) {
+        console.error("Gagal menghapus user:", err);
+        setShowConfirmPopup(false);
+      }
     }
   };
 
@@ -118,7 +148,8 @@ function UserManagement() {
       </div>
 
       {/* Form Input */}
-      <form onSubmit={handleSubmit} className="user-form">
+      {/* Kaitkan ref ke elemen form di sini */}
+      <form onSubmit={handleSubmit} className="user-form" ref={formRef}> 
         <input name="name" placeholder="Nama" value={form.name} onChange={handleChange} required />
         <input name="location" placeholder="Lokasi" value={form.location} onChange={handleChange} />
         <input name="os" placeholder="OS" value={form.os} onChange={handleChange} />
@@ -167,12 +198,39 @@ function UserManagement() {
               <td>{u.ipAddress || "-"}</td>
               <td>
                 <button className="btn-edit" onClick={() => handleEdit(u)}>✏️ Edit</button>
-                <button className="btn-delete" onClick={() => handleDelete(u.id)}>🗑 Delete</button>
+                <button className="btn-delete" onClick={() => handleDelete(u)}>🗑 Delete</button> {/* Mengirim objek user */}
               </td>
             </tr>
           ))}
         </tbody>
       </table>
+
+      {/* Pop-up Konfirmasi Hapus */}
+      {showConfirmPopup && ipToDelete && (
+        <div className="popup-overlay">
+          <div className="popup-content confirm-popup">
+            <div className="popup-icon-question">?</div>
+            <h3>Konfirmasi</h3>
+            <p>Yakin ingin menghapus IP Address: {ipToDelete.ipAddress}?</p>
+            <div className="popup-buttons">
+              <button className="btn-popup-confirm" onClick={confirmDelete}>Ya, Lanjutkan</button>
+              <button className="btn-popup-cancel" onClick={() => setShowConfirmPopup(false)}>Tidak, Batal</button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Pop-up Sukses Hapus */}
+      {showSuccessPopup && (
+        <div className="popup-overlay">
+          <div className="popup-content success-popup">
+            <div className="popup-icon-success">✔</div>
+            <h3>Sukses</h3>
+            <p>Data berhasil dihapus</p>
+            <button className="btn-popup-close" onClick={() => setShowSuccessPopup(false)}>Tutup</button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

@@ -1,0 +1,179 @@
+/* src/components/CSS/SubnetForm.css */
+
+.subnet-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #222;
+    color: white;
+    border-radius: 10px;
+}
+
+.subnet-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.subnet-title {
+    font-size: 24px; /* Sesuaikan dengan h2 default atau biarkan default browser */
+}
+
+.subnet-toggle-button {
+    padding: 8px 15px;
+    color: white;
+    font-weight: normal;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.2s ease;
+}
+
+/* Warna tombol toggle berdasarkan status */
+.subnet-toggle-button.show-list { /* Saat tombol menampilkan "Lihat Daftar Subnet" */
+    background-color: #007bff; /* Biru */
+}
+
+.subnet-toggle-button.show-list:hover {
+    background-color: #0056b3;
+}
+
+.subnet-toggle-button.show-form { /* Saat tombol menampilkan "Tambah Subnet Baru" */
+    background-color: #f44336; /* Merah */
+}
+
+.subnet-toggle-button.show-form:hover {
+    background-color: #d32f2f;
+}
+
+.subnet-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.subnet-input,
+.subnet-select,
+.subnet-textarea {
+    padding: 10px;
+    font-size: 16px;
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid white;
+    border-radius: 4px;
+    background-color: transparent; /* Tetap transparan */
+    color: white;
+}
+
+.subnet-select {
+    background-color: #000; /* Untuk dropdown agar lebih gelap */
+    color: #fff;
+    -webkit-appearance: none; /* Hapus panah default di Webkit */
+    -moz-appearance: none;    /* Hapus panah default di Firefox */
+    appearance: none;         /* Hapus panah default */
+    /* Opsional: Tambahkan ikon panah kustom jika diinginkan */
+    /* background-image: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12"><path fill="%23fff" d="M10 4L6 8 2 4z"/></svg>'); */
+    /* background-repeat: no-repeat; */
+    /* background-position: right 10px center; */
+}
+
+
+.subnet-textarea {
+    min-height: 80px;
+    resize: vertical;
+}
+
+.subnet-submit-button {
+    cursor: pointer;
+    background-color: white;
+    color: #000;
+    font-weight: bold;
+    padding: 10px; /* Gunakan padding dari commonStyle yang dipindahkan */
+    font-size: 16px; /* Gunakan font-size dari commonStyle yang dipindahkan */
+    width: 100%; /* Gunakan width dari commonStyle yang dipindahkan */
+    box-sizing: border-box; /* Gunakan box-sizing dari commonStyle yang dipindahkan */
+    border: 1px solid white; /* Gunakan border dari commonStyle yang dipindahkan */
+    border-radius: 4px; /* Gunakan border-radius dari commonStyle yang dipindahkan */
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.subnet-submit-button:hover {
+    background-color: #ccc;
+    color: #000;
+}
+
+.subnet-list-title {
+    margin-top: 30px;
+}
+
+.subnet-list {
+    list-style: none;
+    padding: 0;
+}
+
+.subnet-list li {
+    padding: 10px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid white;
+}
+
+.subnet-empty-message {
+    text-align: center;
+    font-style: italic;
+    color: #ccc;
+}
+
+
+/* --- Styling untuk Pop-up (Disesuaikan dengan SubnetForm) --- */
+.subnet-popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9998;
+}
+
+.subnet-popup {
+    background-color: #1a1a1a;
+    padding: 30px 24px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+    z-index: 9999;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    min-width: 250px;
+    max-width: 350px;
+    width: 90%;
+    /* Border dinamis berdasarkan tipe */
+    border: 2px solid;
+}
+
+.subnet-popup.success {
+    border-color: green;
+}
+
+.subnet-popup.error {
+    border-color: #FF0000;
+}
+
+.subnet-popup-message {
+    /* Color dinamis berdasarkan tipe */
+    font-size: 16px; /* Gunakan font-size dari popupStyle yang dipindahkan */
+    font-weight: bold; /* Gunakan font-weight dari popupStyle yang dipindahkan */
+}
+
+.subnet-popup-message.success {
+    color: white; /* Pesan sukses tetap putih atau hijau terang */
+}
+
+.subnet-popup-message.error {
+    color: red;
+}

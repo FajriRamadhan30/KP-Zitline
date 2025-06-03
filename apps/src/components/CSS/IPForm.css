@@ -1,0 +1,159 @@
+/* src/components/CSS/IPForm.css */
+
+.ipform-page {
+    background-color: #000;
+    min-height: 100vh;
+    padding: 40px 20px;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.ipform-container {
+    width: 100%;
+    max-width: 400px;
+    padding: 25px;
+    border-radius: 8px;
+    background-color: #111;
+    color: #fff;
+    box-shadow: 0 0 10px rgba(255,255,255,0.1);
+}
+
+.ipform-title {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.ipform-form-group {
+    margin-bottom: 15px;
+    width: 100%;
+}
+
+.ipform-input,
+.ipform-select,
+.ipform-textarea {
+    width: 100%;
+    padding: 12px;
+    border-radius: 5px;
+    border: 1px solid #555;
+    font-size: 16px;
+    background-color: #333;
+    color: #fff;
+    box-sizing: border-box; /* Pastikan padding tidak mempengaruhi lebar total */
+}
+
+.ipform-select {
+    appearance: none; /* Hilangkan panah default pada select */
+}
+
+.ipform-textarea {
+    resize: vertical; /* Izinkan resize vertikal */
+    min-height: 100px;
+    font-family: inherit; /* Sesuaikan dengan font input lainnya */
+}
+
+.ipform-button {
+    width: 100%;
+    padding: 12px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.ipform-button:hover {
+    background-color: #45a049; /* Warna hover untuk tombol */
+}
+
+/* --- Styling untuk Pop-up --- */
+.ipform-popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7); /* Background gelap transparan */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9998; /* Di bawah popup itu sendiri tapi di atas konten lain */
+}
+
+
+.ipform-popup {
+    background-color: #1a1a1a; /* Latar belakang pop-up gelap */
+    padding: 30px 24px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.7); /* Bayangan lebih kuat */
+    z-index: 9999;
+    min-width: 280px;
+    max-width: 350px;
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid; /* Border akan disesuaikan oleh class success/error */
+}
+
+.ipform-popup.success {
+    border-color: green;
+}
+
+.ipform-popup.error {
+    border-color: #FF0000;
+}
+
+.ipform-popup-icon-container {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    background-color: transparent;
+    border: 3px solid; /* Border akan disesuaikan oleh class success/error */
+}
+
+.ipform-popup-icon-container.success {
+    border-color: green;
+}
+
+.ipform-popup-icon-container.error {
+    border-color: #FF0000;
+}
+
+.ipform-popup-icon-x {
+    color: #FF0000;
+    font-size: 60px;
+    font-weight: bold;
+    line-height: 1;
+}
+
+.ipform-popup-icon-check {
+    color: green;
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.ipform-popup-message {
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.ipform-popup-message.success {
+    color: green;
+}
+
+.ipform-popup-message.error {
+    color: #FF0000;
+}

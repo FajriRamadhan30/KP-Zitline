@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { api } from "../api/api";
+import '../components/CSS/SubnetForm.css';
 
 function SubnetForm() {
   const [subnet, setSubnet] = useState("");
@@ -8,9 +9,11 @@ function SubnetForm() {
   const [list, setList] = useState([]);
   const [popup, setPopup] = useState({ show: false, message: "", type: "success" });
 
+  const [showAddForm, setShowAddForm] = useState(true); 
+
   const fetchSubnets = () => {
     api
-      .get("/subnets") // <- sudah diperbaiki endpointnya
+      .get("/subnets")
       .then((res) => setList(res.data))
       .catch((err) => showPopup(`Gagal load data: ${err.response?.data?.message || err.message}`, "error"));
   };
@@ -27,7 +30,7 @@ function SubnetForm() {
   const handleSubmit = (e) => {
     e.preventDefault();
     api
-      .post("/subnets", { subnet, type, description }) // <- sudah diperbaiki endpointnya
+      .post("/subnets", { subnet, type, description })
       .then(() => {
         showPopup("✅ Subnet berhasil ditambahkan", "success");
         setSubnet("");
@@ -37,113 +40,90 @@ function SubnetForm() {
       .catch((err) => showPopup(`Gagal tambah subnet: ${err.response?.data?.message || err.message}`, "error"));
   };
 
-  const commonStyle = {
-    padding: "10px",
-    fontSize: "16px",
-    width: "100%",
-    boxSizing: "border-box",
-    border: "1px solid white",
-    borderRadius: "4px",
-    backgroundColor: "transparent",
-    color: "white",
-  };
-
-  const popupStyle = {
-    position: "fixed",
-    top: "50%",
-    left: "50%",
-    transform: "translate(-50%, -50%)",
-    backgroundColor: "#1a1a1a",
-    color: popup.type === "error" ? "red" : "white",
-    padding: "30px 24px",
-    border: "2px solid white",
-    borderRadius: "10px",
-    boxShadow: "0 4px 12px rgba(0,0,0,0.5)",
-    zIndex: 9999,
-    fontSize: "16px",
-    fontWeight: "bold",
-    textAlign: "center",
-    minWidth: "250px",
-  };
-
   return (
-    <div
-      style={{
-        maxWidth: "600px",
-        margin: "0 auto",
-        padding: "20px",
-        backgroundColor: "#222",
-        color: "white",
-        borderRadius: "10px",
-      }}
-    >
-      <h2>➕ Tambah Subnet</h2>
-      <form
-        onSubmit={handleSubmit}
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          gap: "20px",
-        }}
-      >
-        <input value={subnet} onChange={(e) => setSubnet(e.target.value)} placeholder="Subnet (e.g. 192.168.1.0/24)" required style={commonStyle} />
-
-        <select
-          value={type}
-          onChange={(e) => setType(e.target.value)}
-          style={{
-            ...commonStyle,
-            backgroundColor: "#000",
-            color: "#fff",
-          }}
-        >
-          <option value="IPv4">IPv4</option>
-          <option value="IPv6">IPv6</option>
-        </select>
-
-        <textarea
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-          placeholder="Deskripsi subnet"
-          style={{
-            ...commonStyle,
-            minHeight: "80px",
-            resize: "vertical",
-          }}
-        />
-
+    <div className="subnet-container">
+      <div className="subnet-header">
+        <h2 className="subnet-title">{showAddForm ? '➕ Tambah Subnet' : '📄 Daftar Subnet'}</h2>
         <button
-          type="submit"
-          style={{
-            ...commonStyle,
-            cursor: "pointer",
-            backgroundColor: "white",
-            color: "#000",
-            fontWeight: "bold",
-          }}
+          onClick={() => setShowAddForm(!showAddForm)}
+          className={`subnet-toggle-button ${showAddForm ? 'show-list' : 'show-form'}`}
         >
-          💾 Simpan
+          {showAddForm ? 'Lihat Daftar Subnet' : '➕ Tambah Subnet Baru'}
         </button>
-      </form>
+      </div>
 
-      <h3 style={{ marginTop: "30px" }}>📄 Daftar Subnet</h3>
-      <ul style={{ listStyle: "none", padding: 0 }}>
-        {list.map((s) => (
-          <li
-            key={s.id}
-            style={{
-              padding: "10px",
-              marginBottom: "10px",
-              borderBottom: "1px solid white",
-            }}
+      {showAddForm ? (
+        <form
+          onSubmit={handleSubmit}
+          className="subnet-form"
+        >
+          <input
+            value={subnet}
+            onChange={(e) => setSubnet(e.target.value)}
+            placeholder="Subnet (e.g. 192.168.1.0/24)"
+            required
+            className="subnet-input"
+          />
+
+          <select
+            value={type}
+            onChange={(e) => setType(e.target.value)}
+            className="subnet-select"
           >
-            <strong>{s.subnet}</strong> ({s.type})<br />
-            <em>{s.description}</em>
-          </li>
-        ))}
-      </ul>
+            <option value="IPv4">IPv4</option>
+            <option value="IPv6">IPv6</option>
+          </select>
 
-      {popup.show && <div style={popupStyle}>{popup.message}</div>}
+          <textarea
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+            placeholder="Deskripsi subnet"
+            className="subnet-textarea"
+          />
+
+          <button
+            type="submit"
+            className="subnet-submit-button"
+          >
+            💾 Simpan
+          </button>
+        </form>
+      ) : (
+        <>
+          <ul className="subnet-list">
+            {list.length > 0 ? (
+              list.map((s) => (
+                <li
+                  key={s.id}
+                  style={{ /* Untuk li, jika tidak ada styling khusus, tetap pakai inline atau buat class terpisah */
+                    padding: "10px",
+                    marginBottom: "10px",
+                    borderBottom: "1px solid white",
+                  }}
+                >
+                  <strong>{s.subnet}</strong> ({s.type})<br />
+                  <em>{s.description}</em>
+                </li>
+              ))
+            ) : (
+              // Perbaikan di sini: Hapus komentar yang satu baris dengan tag penutup,
+              // atau pindahkan komentar ke baris baru.
+              <p className="subnet-empty-message">Belum ada subnet yang ditambahkan.</p> 
+            )}
+          </ul>
+        </>
+      )}
+
+      {/* Pop-up */}
+      {popup.show && (
+        <div className="subnet-popup-overlay">
+          <div className={`subnet-popup ${popup.type}`}>
+            <div className={`subnet-popup-message ${popup.type}`}>
+              {popup.message}
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

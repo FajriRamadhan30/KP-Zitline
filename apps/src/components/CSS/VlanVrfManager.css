@@ -1,0 +1,280 @@
+/* src/components/CSS/VlanVrfManager.css */
+
+.vlan-vrf-container {
+    padding: 20px;
+    color: white;
+    background-color: #222;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.vlan-vrf-title {
+    text-align: center;
+}
+
+.vlan-vrf-forms-container {
+    display: flex;
+    justify-content: center;
+    gap: 60px;
+    margin-top: 40px;
+    flex-wrap: wrap;
+}
+
+.vlan-vrf-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.vlan-vrf-header-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.vlan-vrf-section h4 {
+    margin: 0;
+}
+
+.vlan-vrf-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+    max-width: 300px;
+    background-color: #333;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.vlan-vrf-input,
+.vlan-vrf-textarea {
+    padding: 10px;
+    font-size: 16px;
+    background-color: #000;
+    color: #fff;
+    border: 1px solid #555;
+    border-radius: 4px;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.vlan-vrf-textarea {
+    min-height: 80px;
+    resize: vertical;
+}
+
+.vlan-vrf-button {
+    padding: 10px;
+    font-size: 16px;
+    background-color: #fff;
+    color: #000;
+    font-weight: bold;
+    cursor: pointer;
+    border: 1px solid #555; /* Sesuaikan atau hapus jika tidak perlu border */
+    border-radius: 4px;
+    box-sizing: border-box;
+    width: 100%;
+    transition: background-color 0.2s ease;
+}
+
+.vlan-vrf-button:hover {
+    background-color: #ccc;
+}
+
+.vlan-vrf-toggle-button {
+    padding: 8px 15px;
+    color: white;
+    font-weight: normal;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.2s ease;
+    margin-left: 10px;
+}
+
+.vlan-vrf-toggle-button.show-list {
+    background-color: #f44336; /* Merah untuk 'Kembali ke Form' */
+}
+
+.vlan-vrf-toggle-button.show-form {
+    background-color: #007bff; /* Biru untuk 'Lihat Daftar' */
+}
+
+.vlan-vrf-list-container {
+    background-color: #333;
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 450px; /* Lebar diperbesar */
+    width: 100%;
+}
+
+.vlan-vrf-list {
+    list-style: none;
+    padding: 0;
+    max-height: 400px; /* Tinggi diperbesar */
+    overflow-y: auto;
+    border: 2px solid #777; /* Border luar lebih tebal */
+    border-radius: 4px;
+    padding-top: 5px;
+}
+
+.vlan-vrf-list li {
+    padding: 8px 10px;
+    border-bottom: 2px solid #555; /* Border antar item lebih tebal */
+}
+
+.vlan-vrf-list li:last-child {
+    border-bottom: none; /* Hapus border bawah pada item terakhir */
+}
+
+/* --- Styling untuk Pop-up (Disesuaikan dengan Gambar yang Anda Berikan) --- */
+.vlan-vrf-popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9998;
+}
+
+.vlan-vrf-popup {
+    background-color: #181818; /* Latar belakang pop-up */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.6);
+    z-index: 9999;
+    font-size: 16px;
+    text-align: center;
+    min-width: 200px;
+    max-width: 300px;
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    border: none; /* Default tidak ada border untuk pop-up */
+}
+
+/* Styling untuk pesan sukses */
+.vlan-vrf-popup.success {
+    /* Tidak ada border khusus untuk sukses, mengikuti gambar */
+}
+
+.vlan-vrf-popup.success .vlan-vrf-popup-icon {
+    background-color: #1DB954; /* Hijau Spotify */
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    margin-bottom: 5px;
+}
+
+.vlan-vrf-popup.success .vlan-vrf-popup-title {
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+    margin-bottom: 5px;
+}
+
+.vlan-vrf-popup.success .vlan-vrf-popup-message {
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-bottom: 10px;
+    font-weight: normal;
+}
+
+.vlan-vrf-popup.success .vlan-vrf-popup-message-icon { /* Icon di dalam pesan sukses */
+    color: #1DB954;
+    font-size: 16px;
+}
+
+.vlan-vrf-popup.success .vlan-vrf-popup-button {
+    background-color: #007bff; /* Biru tombol "Tutup" */
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.2s ease;
+}
+
+.vlan-vrf-popup.success .vlan-vrf-popup-button:hover {
+    background-color: #0056b3;
+}
+
+
+/* Styling untuk pesan error (Diperbarui sesuai gambar) */
+.vlan-vrf-popup.error {
+    border: 2px solid #FF4136; /* Border merah tipis */
+}
+
+.vlan-vrf-popup.error .vlan-vrf-popup-icon {
+    background-color: #FF4136; /* Merah untuk lingkaran */
+    color: white; /* Warna 'X' di tengah */
+    width: 50px; /* Ukuran lebih besar seperti gambar */
+    height: 50px; /* Ukuran lebih besar seperti gambar */
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 32px; /* Ukuran font 'X' lebih besar */
+    margin-bottom: 5px;
+    border: 2px solid #FAA0A0; /* Outline pink */
+    box-shadow: 0 0 0 4px rgba(255, 65, 54, 0.3); /* Sedikit shadow merah */
+}
+
+.vlan-vrf-popup.error .vlan-vrf-popup-title { /* Kelas baru untuk judul "Error" */
+    font-size: 20px;
+    font-weight: bold;
+    color: white; /* Warna teks judul Error */
+    margin-bottom: 5px;
+}
+
+.vlan-vrf-popup.error .vlan-vrf-popup-message {
+    color: #FF4136; /* Warna teks error merah */
+    display: flex;
+    flex-direction: column; /* Ubah menjadi kolom agar ikon di atas pesan */
+    align-items: center;
+    gap: 5px;
+    font-weight: normal;
+    font-size: 16px; /* Ukuran font pesan */
+    line-height: 1.4; /* Spasi antar baris */
+}
+
+.vlan-vrf-popup.error .vlan-vrf-popup-message-icon { /* Icon 'X' di dalam pesan */
+    color: #FAA0A0; /* Warna icon 'X' pink */
+    font-size: 20px; /* Ukuran icon 'X' di pesan */
+    margin-bottom: 5px; /* Jarak antara icon dan teks pesan */
+}
+
+.vlan-vrf-popup.error .vlan-vrf-popup-button {
+    background-color: #007bff; /* Biru seperti pop-up sukses */
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.2s ease;
+}
+
+.vlan-vrf-popup.error .vlan-vrf-popup-button:hover {
+    background-color: #0056b3;
+}
