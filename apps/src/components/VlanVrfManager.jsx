@@ -5,8 +5,10 @@ import '../components/CSS/VlanVrfManager.css';
 function VlanVrfManager() {
     const [vlans, setVlans] = useState([]);
     const [vrfs, setVrfs] = useState([]);
+    // PERBAIKAN: State VLAN disederhanakan, vrf_id dihapus
     const [vlanInput, setVlanInput] = useState({ vlan_id: '', name: '', description: '' });
-    const [vrfInput, setVrfInput] = useState({ vrf_name: '', route_distinguisher: '', description: '' });
+    // PERBAIKAN: State VRF disesuaikan menjadi 'route_distinguisher'
+    const [vrfInput, setVrfInput] = useState({ name: '', route_distinguisher: '', description: '' });
     const [popup, setPopup] = useState({ show: false, message: '', type: 'success' });
 
     const [showVLANList, setShowVLANList] = useState(false);
@@ -53,7 +55,7 @@ function VlanVrfManager() {
         api.post('/vlanvrf/vrf', vrfInput)
             .then(() => {
                 showPopup('✅ VRF berhasil ditambahkan', 'success');
-                setVrfInput({ vrf_name: '', route_distinguisher: '', description: '' });
+                setVrfInput({ name: '', route_distinguisher: '', description: '' });
                 fetchData();
                 setShowVRFList(true);
             })
@@ -83,7 +85,9 @@ function VlanVrfManager() {
                                 {vlans.length > 0 ? (
                                     vlans.map(v => (
                                         <li key={v.id} className="vlan-vrf-list-item">
-                                            <strong>{v.vlan_id}</strong> - {v.name} <br />
+                                            {/* PERBAIKAN: Badge VRF dihapus karena tidak ada relasi */}
+                                            <strong>{v.vlan_id}</strong> - {v.name}
+                                            <br />
                                             <small>{v.description}</small>
                                         </li>
                                     ))
@@ -109,6 +113,7 @@ function VlanVrfManager() {
                                 required
                                 className="vlan-vrf-input"
                             />
+                            {/* DIHAPUS: Dropdown untuk memilih VRF dihapus karena tidak ada relasi di DB */}
                             <textarea
                                 placeholder="Deskripsi"
                                 value={vlanInput.description}
@@ -138,8 +143,9 @@ function VlanVrfManager() {
                                 {vrfs.length > 0 ? (
                                     vrfs.map(v => (
                                         <li key={v.id} className="vlan-vrf-list-item">
-                                            <strong>{v.vrf_name}</strong> <br />
-                                            <small>{v.route_distinguisher}</small> <br />
+                                            <strong>{v.name}</strong> <br />
+                                            {/* PERBAIKAN: Menggunakan 'route_distinguisher' sesuai DB */}
+                                            <small>RD: {v.route_distinguisher}</small> <br />
                                             <small>{v.description}</small>
                                         </li>
                                     ))
@@ -152,11 +158,12 @@ function VlanVrfManager() {
                         <form onSubmit={handleVRFSubmit} className="vlan-vrf-form">
                             <input
                                 placeholder="Nama VRF"
-                                value={vrfInput.vrf_name}
-                                onChange={e => setVrfInput({ ...vrfInput, vrf_name: e.target.value })}
+                                value={vrfInput.name}
+                                onChange={e => setVrfInput({ ...vrfInput, name: e.target.value })}
                                 required
                                 className="vlan-vrf-input"
                             />
+                            {/* PERBAIKAN: State dan value disesuaikan menjadi 'route_distinguisher' */}
                             <input
                                 placeholder="Route Distinguisher (RD)"
                                 value={vrfInput.route_distinguisher}
@@ -176,7 +183,7 @@ function VlanVrfManager() {
                 </div>
             </div>
 
-            {/* Pop-up notifikasi */}
+            {/* Pop-up notifikasi (tidak ada perubahan) */}
             {popup.show && (
                 <div className="vlan-vrf-popup-overlay">
                     <div className={`vlan-vrf-popup ${popup.type}`}>
@@ -184,9 +191,7 @@ function VlanVrfManager() {
                             <>
                                 <div className="vlan-vrf-popup-icon">&#10004;</div>
                                 <div className="vlan-vrf-popup-title">Sukses</div>
-                                <div className="vlan-vrf-popup-message">
-                                    <span className="vlan-vrf-popup-message-icon">&#10004;</span> {popup.message}
-                                </div>
+                                <div className="vlan-vrf-popup-message">{popup.message}</div>
                                 <button
                                     onClick={() => setPopup({ ...popup, show: false })}
                                     className="vlan-vrf-popup-button"
@@ -196,11 +201,7 @@ function VlanVrfManager() {
                             <>
                                 <div className="vlan-vrf-popup-icon">&#10006;</div>
                                 <div className="vlan-vrf-popup-title">Error</div>
-                                <div className="vlan-vrf-popup-message">
-                                    {/* HAPUS SPAN IKON DI SINI */}
-                                    {/* <span className="vlan-vrf-popup-message-icon">&#10006;</span> */}
-                                    {popup.message}
-                                </div>
+                                <div className="vlan-vrf-popup-message">{popup.message}</div>
                                 <button
                                     onClick={() => setPopup({ ...popup, show: false })}
                                     className="vlan-vrf-popup-button"
